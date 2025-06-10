@@ -1,0 +1,294 @@
+/* resources/css/app.css */
+
+/* --- Variables CSS (Opcional, pero recomendado para consistencia) --- */
+:root {
+    --primary-color: #EE1D23; /* Rojo TOTTUS */
+    --secondary-color: #004D9D; /* Azul oscuro */
+    --text-color: #333;
+    --light-gray: #f4f4f4;
+    --border-color: #ddd;
+    --font-family: Arial, sans-serif;
+}
+
+/* --- Estilos Generales / Reset básico --- */
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-gray);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px; /* Ancho máximo para contenido */
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* --- Header / Encabezado --- */
+.header-alimentos {
+    background-color: #fff;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+    display: flex; /* Para alinear elementos en línea */
+    justify-content: space-between; /* Espacia los elementos */
+    align-items: center; /* Centra verticalmente */
+}
+
+.header-alimentos h1 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 2.2em;
+    padding-left: 20px; /* Espacio a la izquierda del logo */
+}
+
+.header-alimentos h1 span {
+    color: var(--secondary-color); /* Si 'TOTTUS' es un span para otro color */
+}
+
+.zona-superior-derecha {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacio entre los elementos (buscador, carrito) */
+    padding-right: 20px; /* Espacio a la derecha */
+}
+
+.barra-busqueda-principal {
+    display: flex;
+}
+
+.barra-busqueda-principal input[type="text"] {
+    padding: 8px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px 0 0 4px;
+    font-size: 1em;
+    flex-grow: 1; /* Permite que crezca */
+}
+
+.barra-busqueda-principal button {
+    padding: 8px 15px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: 1px solid var(--secondary-color);
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.barra-busqueda-principal button:hover {
+    background-color: #003a7a; /* Un azul más oscuro al pasar el mouse */
+}
+
+.carrito-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    gap: 5px;
+}
+
+.carrito-link img { /* Para el icono del carrito si es una imagen */
+    width: 24px;
+    height: 24px;
+}
+
+.carrito-link:hover {
+    color: var(--primary-color);
+}
+
+
+/* --- Barra de Navegación de Categorías (Main Nav) --- */
+.main-nav {
+    background-color: #fff;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Centra los elementos de la lista */
+    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si no hay espacio */
+    gap: 20px; /* Espacio entre los ítems */
+}
+
+.main-nav li a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+.main-nav li a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Sección de Promociones (Sliders / Banners) --- */
+.seccion-promociones {
+    margin-top: 20px;
+    text-align: center; /* Para centrar las imágenes de promoción */
+}
+
+.seccion-promociones img {
+    max-width: 100%; /* Asegura que la imagen no se desborde del contenedor */
+    height: auto; /* Mantiene la proporción */
+    display: block; /* Elimina espacio extra debajo de la imagen */
+    margin: 0 auto 10px auto; /* Centra y da un poco de margen abajo */
+    border-radius: 8px; /* Bordes ligeramente redondeados */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Estilos para los botones de navegación de la promoción (si son los <> del HTML) */
+.seccion-promociones button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+.seccion-promociones button:hover {
+    background-color: var(--primary-color);
+}
+
+/* --- Sección Destacados de la Semana --- */
+.destacados-semana {
+    margin-top: 30px;
+}
+
+.destacados-semana h2 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.productos-destacados {
+    display: flex; /* Para poner los productos en fila */
+    flex-wrap: wrap; /* Si hay muchos, que pasen a la siguiente línea */
+    justify-content: center; /* Centra los productos */
+    gap: 25px; /* Espacio entre productos */
+}
+
+.producto-item { /* Asumo que cada producto tendrá una clase similar */
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    width: 200px; /* Ancho fijo para cada producto, ajustar según necesidad */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto-item:hover {
+    transform: translateY(-5px); /* Pequeño efecto al pasar el mouse */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.producto-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.producto-item h3 {
+    font-size: 1.2em;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.producto-item .precio {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.producto-item button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.producto-item button:hover {
+    background-color: #c9191e; /* Un rojo más oscuro */
+}
+
+/* --- Footer --- */
+.main-footer {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer-social img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+}
+
+.footer-social img:hover {
+    transform: scale(1.1);
+}
+
+.main-footer p {
+    margin: 10px 0 0 0;
+    font-size: 0.9em;
+}
+
+/* --- Media Queries (Para Responsiveness Básico) --- */
+@media (max-width: 768px) {
+    .header-alimentos {
+        flex-direction: column; /* Apila elementos en pantallas pequeñas */
+        align-items: flex-start; /* Alinea a la izquierda */
+        padding: 15px;
+    }
+
+    .zona-superior-derecha {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .barra-busqueda-principal {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .main-nav ul {
+        flex-direction: column; /* Apila las categorías */
+        align-items: center;
+    }
+
+    .producto-item {
+        width: 100%; /* Ocupa todo el ancho disponible */
+    }
+}
+
+@media (max-width: 480px) {
+    .header-alimentos h1 {
+        font-size: 1.8em;
+    }
+}
