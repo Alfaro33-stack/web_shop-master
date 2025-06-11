@@ -13,7 +13,7 @@
 
 
   <header class="header-alimentos">
-    <h1><span>TOTTUS</span></h1>
+    <h1><span>TOTTUS  el mejor</span></h1>
 
     <div class="zona-superior-derecha">
       <div class="barra-busqueda-principal">
