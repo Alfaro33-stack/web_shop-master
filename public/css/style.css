@@ -58,45 +58,26 @@ a:hover {
 }
 
 .header-alimentos h1 {
-    /* El contenedor del texto del logo. Mantén un font-size base si quieres,
-       pero la escala en .logo-tottus es la que hará el agrandamiento visual. */
-    font-size: 1em; /* Mantiene el tamaño base del h1, para que no afecte la altura de la barra */
-    font-weight: normal; /* Puedes quitar negrita si solo quieres TOTTUS negrita */
-    color: var(--color-text-dark); /* Color base del h1 */
-    /* Removido display:flex y gap, ya no son necesarios si solo tienes el span de TOTTUS */
+    font-size: 1em; /* Mantiene el tamaño base del h1 */
+    font-weight: normal;
+    color: var(--color-text-dark);
 }
 
-/* REGLA CLAVE: Estilo para la palabra "TOTTUS" */
 .header-alimentos h1 .logo-tottus {
     font-size: 1em; /* Mantenemos el tamaño original de la fuente. La escala hará el agrandamiento visual. */
-    color: var(--color-primary-tottus); /* Aplica el color verde de Tottus */
-    font-weight: bold; /* Asegura que sea negrita */
-    
-    /* ¡PROPIEDADES FUNDAMENTALES PARA EL EFECTO SIN AFECTAR LA BARRA BLANCA! */
-    transform: scale(2.5); /* Ajusta este valor para el tamaño deseado (ej: 2.0, 2.8, 3.0). */
-    transform-origin: left center; /* El punto desde el cual se aplica la escala (izquierda y centro vertical) */
-    display: inline-block; /* NECESARIO para que 'transform' funcione correctamente en un <span> */
-    
-    /* Ajustes opcionales de posición si la escala lo desalinea ligeramente.
-       Descomenta y ajusta si es necesario después de ver el resultado. */
-    /* position: relative; */
-    /* top: 3px; */   /* Mover ligeramente hacia abajo, si es necesario */
-    /* left: 0px; */
-    
-    transition: transform 0.3s ease-out; /* Animación suave para el efecto */
-}
-/* La regla .header-alimentos h1 span duplicaba el color. Se elimina o se adapta si hay otros spans. */
-/* Si solo quieres que .logo-tottus sea verde, puedes eliminar esta regla: */
-/* .header-alimentos h1 span {
     color: var(--color-primary-tottus);
-} */
-
+    font-weight: bold;
+    transform: scale(2.5); /* Ajusta este valor para el tamaño deseado (ej: 2.0, 2.8, 3.0). */
+    transform-origin: left center;
+    display: inline-block;
+    transition: transform 0.3s ease-out;
+}
 
 .zona-superior-derecha {
     display: flex;
     align-items: center;
     gap: 20px;
-    flex-wrap: wrap; /* Para que se adapte en pantallas pequeñas */
+    flex-wrap: wrap;
 }
 
 .barra-busqueda-principal {
@@ -104,8 +85,8 @@ a:hover {
     border: 1px solid var(--color-border-light);
     border-radius: 5px;
     overflow: hidden;
-    flex-grow: 1; /* Permite que la barra de búsqueda crezca */
-    max-width: 350px; /* Ancho máximo para la barra */
+    flex-grow: 1;
+    max-width: 350px;
 }
 
 .barra-busqueda-principal input {
@@ -138,7 +119,7 @@ a:hover {
     font-weight: bold;
     display: flex;
     align-items: center;
-    gap: 8px; /* Espacio entre el icono y el texto */
+    gap: 8px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -148,44 +129,41 @@ a:hover {
 }
 
 /* ----------------------------------------------------- */
-/* NAVEGACIÓN DE CATEGORÍAS HORIZONTAL (NUEVA SECCIÓN) */
+/* NAVEGACIÓN DE CATEGORÍAS HORIZONTAL */
 /* ----------------------------------------------------- */
 .categorias-horizontal {
-    background-color: var(--color-primary-tottus); /* O un color que combine con tu diseño */
-    padding: 10px 0; /* Espaciado interno (arriba/abajo 10px, izquierda/derecha 40px como el header) */
-    width: 100%; /* Ocupa todo el ancho */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil debajo */
-    /* text-align: center; No es necesario con justify-content: center en el UL */
+    background-color: var(--color-primary-tottus);
+    padding: 10px 0;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 0;
 }
 
 .categorias-lista-horizontal {
-    list-style: none; /* Eliminar los puntos de la lista */
-    margin: 0;
-    padding: 0  40px;
-    display: flex; /* ¡Poner los elementos en línea! */
-    justify-content: center; /* Centrar las categorías */
-    flex-wrap: wrap; /* Permitir que los elementos salten de línea en pantallas pequeñas */
-    gap: 25px; /* Espacio entre cada categoría */
-    max-width: 1300px; /* Para centrar los ítems dentro de la barra horizontal */
-    margin-left: auto;
-    margin-right: auto;
-
+    list-style: none;
+    margin: 0 auto; /* Centra la lista de categorías */
+    padding: 0 40px; /* Padding lateral para que los ítems no se peguen a los bordes */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    max-width: 1300px; /* Limita el ancho de la lista para que se alinee con el main-content */
 }
 
 .categorias-lista-horizontal li a {
-    color: var(--color-white); /* Color del texto de las categorías */
-    text-decoration: none; /* Quitar subrayado */
-    font-weight: 600; /* Negrita semi-bold */
-    font-size: 1.1em; /* Tamaño de la fuente */
-    padding: 5px 10px; /* Espaciado para el área de clic */
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1em;
+    padding: 5px 10px;
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-    display: inline-block; /* Para aplicar padding y transform */
+    display: inline-block;
 }
 
 .categorias-lista-horizontal li a:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Fondo sutil al pasar el mouse */
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
-    transform: translateY(-2px); /* Pequeño efecto de elevación */
+    transform: translateY(-2px);
 }
 
 
@@ -193,73 +171,51 @@ a:hover {
 /* CONTENEDOR PRINCIPAL (MAIN CONTENT) */
 /* ----------------------------------------------------- */
 .main-content {
-    flex-grow: 1; /* ¡Esto es lo clave para el sticky footer! Hace que el contenido principal ocupe todo el espacio disponible */
-    /* Eliminadas las propiedades de flexbox que organizaban la navegación lateral y el contenido principal
-       ya que la navegación lateral se movió fuera de main-content. */
-    /* display: flex; */
-    /* gap: 30px; */
-    padding: 30px 40px; /* Mantener el padding general del contenido */
-    max-width: 1300px;
-    margin: 0 auto; /* Centrar el contenido */
-    /* flex-wrap: wrap; */ /* No necesario aquí si el contenido no es flex */
+    flex-grow: 1;
+    /* PROPIEDADES CRUCIALES PARA EL CENTRADO Y ESPACIO LATERAL */
+    padding: 30px 40px; /* Este padding da el espacio a los costados para todo el contenido */
+    max-width: 1300px; /* Limita el ancho total del contenido principal */
+    margin: 0 auto;    /* Centra el contenedor principal */
+    /* ATENCIÓN: Si el banner debe estar de "esquina a esquina", DEBE ESTAR FUERA de este div main-content en el HTML.
+                 Si debe estar centrado con espacios, DEBE ESTAR DENTRO de este div main-content.
+                 Asumo que ahora quieres que esté centrado con espacios. */
 }
 
 
 /* ----------------------------------------------------- */
-/* NAVEGACIÓN LATERAL (ESTILOS ELIMINADOS/MODIFICADOS) */
+/* NAVEGACIÓN LATERAL (ELIMINADAS) */
 /* ----------------------------------------------------- */
-/* La clase .navegacion-alimentos ya no representa una barra lateral.
-   Si tu HTML ya no tiene la <nav class="navegacion-alimentos"> en el sidebar,
-   estos estilos serán redundantes o podrían causar problemas si se reusa la clase.
-   Si la moviste y le cambiaste el nombre a .categorias-horizontal,
-   ENTONCES ESTOS ESTILOS DEBERÍAN SER ELIMINADOS O COMENTADOS. */
+/* ATENCIÓN: Estas reglas CSS para .navegacion-alimentos se eliminan,
+             ya que la navegación lateral fue reemplazada por .categorias-horizontal */
+/* .navegacion-alimentos { display: none; } */
+/* .navegacion-alimentos ul { } */
+/* .navegacion-alimentos ul li a { } */
+/* .navegacion-alimentos ul li a:hover { } */
 
-.navegacion-alimentos { /* ESTOS ESTILOS YA NO APLICAN SI LA NAVEGACIÓN SE MOVIÓ Y RENOMBRÓ */
-    /* flex: 0 0 220px; */
-    /* background-color: var(--color-white); */
-    /* border-radius: 8px; */
-    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); */
-    /* padding: 20px 0; */
-    /* align-self: flex-start; */
-    /* position: sticky; */
-    /* top: 20px; */
-    /* height: fit-content; */
-    display: none; /* Oculta si por alguna razón la antigua barra lateral sigue en el HTML */
+
+/* ----------------------------------------------------- */
+/* CONTENEDOR DEL BANNER PRINCIPAL */
+/* ----------------------------------------------------- */
+.contenedor-banner-principal {
+    width: 100%; /* Ocupa el 100% del main-content que ya está limitado */
+    margin: 0;   /* Elimina márgenes extra */
+    padding: 0;  /* Elimina paddings extra */
+    margin-bottom: 40px; /* Espacio debajo del banner para separar del siguiente contenido */
+    /* ATENCIÓN: Si este contenedor estaba fuera del main-content y ahora quieres que esté dentro
+                 para que tenga padding lateral, asegúrate de haber actualizado el HTML. */
 }
-
-/* Los estilos de .navegacion-alimentos ul y li a también serían reemplazados por los de .categorias-lista-horizontal */
-.navegacion-alimentos ul { /* ESTOS ESTILOS YA NO APLICAN */
-    /* list-style: none; */
-}
-
-.navegacion-alimentos ul li a { /* ESTOS ESTILOS YA NO APLICAN */
-    /* display: block; */
-    /* padding: 12px 25px; */
-    /* color: var(--color-text-light); */
-    /* font-weight: 500; */
-    /* transition: background-color 0.2s ease, color 0.2s ease; */
-}
-
-.navegacion-alimentos ul li a:hover { /* ESTOS ESTILOS YA NO APLICAN */
-    /* background-color: var(--color-primary-tottus); */
-    /* color: var(--color-white); */
-    /* border-radius: 0 5px 5px 0; */
-}
-
 
 /* ----------------------------------------------------- */
 /* SECCIÓN DE BANNER / SLIDER */
 /* ----------------------------------------------------- */
 .banner-slider {
     position: relative;
-    width: 100%; /* Ocupa todo el ancho disponible ahora que no hay navegación lateral */
-    max-width: none; /* Ajusta este max-width según cuánto quieras que abarque tu slider */
-    margin: 0; /* Margen superior 20px, inferior 40px, centrado */
-    margin-bottom: 40px;
-    border-radius: 0;
+    width: 100%; /* Ocupa el 100% de su padre (.contenedor-banner-principal) */
+    max-width: none; /* Esto permite que el banner no se vea limitado por un max-width si lo pones en un contenedor más pequeño */
+    margin: 0;
+    border-radius: 10px; /* Puedes añadir bordes redondeados para el banner si está centrado */
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    /* flex-grow: 1; Esto podría no ser necesario si no está dentro de un flex container con otros elementos */
 }
 
 .banner-slider .slide {
@@ -274,8 +230,8 @@ a:hover {
 .banner-slider img {
     width: 100%;
     height: auto;
-    display: block; /* Elimina espacio extra debajo de la imagen */
-    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsión */
+    display: block;
+    object-fit: cover;
     max-height: 350px; /* Altura máxima para los banners */
 }
 
@@ -311,8 +267,8 @@ a:hover {
 /* SECCIÓN DE PRODUCTOS DESTACADOS */
 /* ----------------------------------------------------- */
 .productos-destacados {
-    /* flex-grow: 1; Ya no es necesario si main-content no es un flex container para esta sección */
-    width: 100%; /* Asegura que tome todo el ancho disponible si se envuelve */
+    width: 100%; /* Ocupa el 100% del main-content */
+    margin-bottom: 50px;
 }
 
 .productos-destacados h2 {
@@ -324,11 +280,18 @@ a:hover {
     padding-bottom: 10px;
 }
 
-.lista-productos {
+/* ATENCIÓN: El selector correcto para el grid de productos es crucial.
+   Si tu HTML tiene <div class="productos-grid"> dentro de .productos-destacados,
+   entonces usa .productos-grid. Si tiene <div class="lista-productos">, usa .lista-productos.
+   Ajusté a .lista-productos según tu CSS proporcionado. */
+.lista-productos { /* Si tu clase HTML es .productos-grid, cambia aquí también */
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Grid responsivo */
-    gap: 30px;
-    padding: 20px 0;
+    /* IMPORTANTE: auto-fit y minmax(250px, 1fr) permite que se ajusten las columnas.
+       250px es el ancho mínimo de cada tarjeta. 1fr distribuye el espacio restante.
+       Esto hará 4 columnas en pantallas grandes si 250px * 4 + gaps caben en 1300px. */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px; /* Espacio entre los items del grid */
+    padding: 20px 0; /* Padding interno si es necesario, o déjalo en 0 si el padding del main es suficiente */
 }
 
 .producto {
@@ -341,7 +304,7 @@ a:hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Empuja el botón al final */
+    justify-content: space-between;
 }
 
 .producto:hover {
@@ -351,8 +314,8 @@ a:hover {
 
 .producto img {
     max-width: 100%;
-    height: 180px; /* Altura fija para las imágenes de producto */
-    object-fit: contain; /* Asegura que la imagen se ajuste sin recortar */
+    height: 180px;
+    object-fit: contain;
     margin-bottom: 15px;
 }
 
@@ -360,7 +323,7 @@ a:hover {
     font-size: 1.2em;
     color: var(--color-text-dark);
     margin-bottom: 10px;
-    flex-grow: 1; /* Permite que el título ocupe espacio si es largo */
+    flex-grow: 1;
 }
 
 .producto .precio {
@@ -380,7 +343,7 @@ a:hover {
     font-size: 1em;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 100%; /* Botón de ancho completo */
+    width: 100%;
 }
 
 .producto .boton-comprar:hover {
@@ -393,11 +356,16 @@ a:hover {
 /* ----------------------------------------------------- */
 .zona-descuentos {
     margin-top: 50px;
-    padding: 0 40px; /* Asegura que la sección tenga padding en los lados */
-    max-width: 1300px; /* Mismo max-width que main-content para alineación */
-    margin-left: auto;
+    /* ATENCIÓN: El padding y max-width que tenías aquí se superponen con .main-content.
+                 Si .zona-descuentos está dentro de .main-content, entonces el padding y max-width
+                 ya son provistos por .main-content. Si está fuera, necesitaría estas propiedades.
+                 Asumo que está dentro de main-content. Si está fuera, este padding y max-width son correctos. */
+    padding: 0; /* Lo reseteamos si está dentro de main-content, que ya tiene padding */
+    max-width: 100%; /* Reseteamos, ya que .main-content lo controla */
+    margin-left: auto; /* Estos auto-márgenes ya los controla .main-content para sus hijos */
     margin-right: auto;
-    width: 100%; /* Asegura que tome todo el ancho disponible */
+    width: 100%;
+    margin-bottom: 50px;
 }
 
 .zona-descuentos h2 {
@@ -442,9 +410,9 @@ a:hover {
     color: var(--color-white);
     padding: 20px 20px;
     text-align: center;
-    width: 100%; /* Ocupa todo el ancho */
-    margin-top: auto; /* ¡Esto lo empuja al final cuando el contenido es corto! */
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.2); /* Sombra sutil en la parte superior del footer */
+    width: 100%;
+    margin-top: auto;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
 }
 
 .footer-social {
@@ -469,7 +437,6 @@ a:hover {
     flex-wrap: wrap;
     gap: 15px;
     font-size: 0.9em;
-
 }
 
 .footer-separator {
@@ -494,7 +461,7 @@ a:hover {
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: var(--color-secondary-green); /* Usamos el verde de acento */
+    background-color: var(--color-secondary-green);
     color: white;
     padding: 12px 25px;
     border-radius: 8px;
@@ -503,7 +470,7 @@ a:hover {
     z-index: 1000;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     font-size: 1.1em;
-    animation: fadeInOut 4s forwards; /* Animación simple para que aparezca y desaparezca */
+    animation: fadeInOut 4s forwards;
 }
 
 @keyframes fadeInOut {
@@ -521,53 +488,34 @@ a:hover {
 /* Para pantallas más pequeñas que 1024px (típicamente tablets y laptops pequeñas) */
 @media (max-width: 1024px) {
     .main-content {
-        flex-direction: column; /* Ya no es un flex container principal */
-        padding: 20px;
-        gap: 20px; /* Esto no aplicará si no es flex */
+        /* flex-direction: column; Ya no es un flex container principal */
+        padding: 20px; /* Ajuste el padding para pantallas más pequeñas */
+        /* gap: 20px; Esto no aplicará si no es flex */
     }
 
-    /* ELIMINAR O AJUSTAR ESTOS ESTILOS DE NAVEGACIÓN LATERAL */
-    /* Ya que ahora tienes .categorias-horizontal en la parte superior */
-    .navegacion-alimentos {
-        /* width: 100%; */
-        /* max-width: none; */
-        /* position: static; */
-        /* margin-bottom: 20px; */
-        /* padding: 15px 0; */
-        display: none; /* Asegura que la antigua sidebar no aparezca */
-    }
-
-    .navegacion-alimentos ul { /* ELIMINAR */
-        /* display: flex; */
-        /* flex-wrap: wrap; */
-        /* justify-content: center; */
-        /* gap: 10px; */
-    }
-
-    .navegacion-alimentos ul li a { /* ELIMINAR */
-        /* padding: 10px 15px; */
-        /* border-radius: 5px; */
-    }
+    /* ATENCIÓN: Eliminadas las reglas para .navegacion-alimentos */
+    /* .navegacion-alimentos { display: none; } */
 
     .banner-slider {
-        max-width: 100%;
+        /* max-width: 100%; El width:100% dentro del main-content ya lo hace responsivo */
         margin-bottom: 30px;
     }
 
     .header-alimentos {
         padding: 15px 20px;
-        flex-direction: column; /* Apila los elementos del header */
-        align-items: flex-start; /* Alinea a la izquierda */
+        flex-direction: column;
+        align-items: flex-start;
         gap: 10px;
     }
 
     .zona-superior-derecha {
         width: 100%;
-        justify-content: space-between; /* Espacio entre barra de búsqueda y carrito */
+        justify-content: space-between;
     }
 
     .barra-busqueda-principal {
         width: 100%;
+        max-width: none; /* Permite que la barra de búsqueda ocupe todo el ancho disponible */
     }
 
     .productos-destacados h2,
@@ -579,15 +527,13 @@ a:hover {
 /* Para pantallas más pequeñas que 768px (típicamente tablets en vertical y móviles) */
 @media (max-width: 768px) {
     .header-alimentos h1 {
-        /* Este estilo afecta al h1 completo, no solo a .logo-tottus.
-           Si .logo-tottus ya tiene transform:scale, esto podría ser redundante o innecesario aquí. */
-        font-size: 1.8em; /* Ajusta el tamaño base del h1 en móviles si es necesario */
+        /* font-size: 1.8em; Este font-size ya está en el h1, el .logo-tottus usa transform */
         text-align: center;
         width: 100%;
     }
 
     .zona-superior-derecha {
-        flex-direction: column; /* Apila la barra de búsqueda y el carrito */
+        flex-direction: column;
         align-items: center;
         width: 100%;
     }
@@ -596,15 +542,9 @@ a:hover {
         width: 100%;
     }
 
-    /* ELIMINAR ESTOS ESTILOS, YA QUE LA NAVEGACIÓN SE MUEVE A .categorias-horizontal */
-    .navegacion-alimentos ul {
-        /* justify-content: space-around; */
-    }
-
-    .navegacion-alimentos ul li {
-        /* width: 48%; */
-        /* text-align: center; */
-    }
+    /* ATENCIÓN: Eliminadas las reglas para .navegacion-alimentos */
+    /* .navegacion-alimentos ul { } */
+    /* .navegacion-alimentos ul li { } */
 
     .lista-productos {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Productos más pequeños en móviles */
@@ -632,21 +572,16 @@ a:hover {
 /* Para móviles pequeños (menos de 480px) */
 @media (max-width: 480px) {
     .header-alimentos,
-    .main-content, /* Cambiado de contenedor-navegacion a main-content */
+    .main-content,
     .zona-descuentos,
     .footer-alimentos {
         padding-left: 15px;
         padding-right: 15px;
     }
 
-    /* ELIMINAR ESTOS ESTILOS, YA QUE LA NAVEGACIÓN SE MUEVE A .categorias-horizontal */
-    .navegacion-alimentos ul li {
-        /* width: 100%; */
-    }
-
-    .navegacion-alimentos ul li a {
-        /* padding: 12px 0; */
-    }
+    /* ATENCIÓN: Eliminadas las reglas para .navegacion-alimentos */
+    /* .navegacion-alimentos ul li { } */
+    /* .navegacion-alimentos ul li a { } */
 
     .lista-productos {
         grid-template-columns: 1fr; /* Una sola columna de productos */
@@ -661,4 +596,50 @@ a:hover {
         padding: 8px 12px;
         font-size: 1.2em;
     }
+}
+
+/* Estilos para el botón flotante de WhatsApp */
+.whatsapp-float {
+    position: fixed; /* Lo fija en la pantalla */
+    width: 60px;     /* Ancho del botón */
+    height: 60px;    /* Alto del botón */
+    bottom: 40px;    /* Distancia desde la parte inferior */
+    right: 40px;     /* Distancia desde el lado derecho */
+    background-color: #25d366; /* Color de fondo de WhatsApp */
+    color: #FFF;     /* Color del icono (si fuera un icono de texto) */
+    border-radius: 50px; /* Hace que sea un círculo */
+    text-align: center;  /* Centra el icono */
+    font-size: 30px;     /* Tamaño del icono (si fuera un icono de texto) */
+    box-shadow: 2px 2px 3px #999; /* Sombra sutil para darle profundidad */
+    z-index: 1000;       /* Asegura que esté por encima de otros elementos */
+    display: flex;       /* Para centrar la imagen */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
+}
+
+.whatsapp-float:hover {
+    background-color: #1da851; /* Un verde un poco más oscuro al pasar el ratón */
+}
+
+.whatsapp-icon-float {
+    width: 35px; /* Tamaño del ícono de WhatsApp dentro del botón */
+    height: 35px;
+    vertical-align: middle; /* Alinea el ícono verticalmente */
+}
+
+/* Opcional: Si quieres una animación al aparecer */
+@keyframes whatsapp-fade-in {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.whatsapp-float {
+    animation: whatsapp-fade-in 0.5s ease-out forwards;
 }
