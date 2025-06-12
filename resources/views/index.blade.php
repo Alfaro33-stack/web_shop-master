@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Secci贸n de Alimentos Mejorada</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Seccion de Alimentos Mejorada</title>
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
 <body>
@@ -142,29 +142,33 @@
     </section>
 
     <footer class="footer-alimentos">
-      <div class="footer-social">
-        <a href="https://www.facebook.com/TottusPeru" target="_blank"><img src="imagenes/facebook.png"
-            alt="Facebook"></a>
-        <a href="https://www.instagram.com/tottusperu/" target="_blank"><img src="imagenes/instagram.png"
-            alt="Instagram"></a>
-        <a href="https://www.youtube.com/@TottusPeru" target="_blank"><img src="imagenes/youtube.png" alt="YouTube"></a>
-      </div>
-      <div class="footer-links">
-        <a
-          href="https://assets.contentstack.io/v3/assets/blt422ac29cebae1d64/blt3dabc5c40faa057e/67db3e1e1c722200f543b13d/TC_Web_y_App_v3_18.03.25_vf.pdf">T茅rminos
-          y condiciones</a>
-        <a
-          href="https://assets.contentstack.io/v3/assets/blt422ac29cebae1d64/bltb0dcce37212d19b6/680a53d983ae052f59e06575/Politica_de_Cookies_Tottus_Peru%CC%81_2025_4931-0316-7279_v.1.pdf">Pol铆tica
-          de cookies</a>
-        <a href="https://www.tottus.com.pe/tottus-pe/content/politica-de-privacidad">Pol铆tica de privacidad</a>
-      </div>
-      <div class="footer-separator"></div>
-      <div class="footer-copyright">
-        <p>&copy; TODOS LOS DERECHOS RESERVADOS</p>
-        <p>Av. Angamos Este N掳 1805 Piso 10, Surquillo, Lima, Per煤.</p>
-      </div>
-    </footer>
-  </div>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/TottusPeru" target="_blank">
+            <img src="{{ asset('imagenes/icons/facebook.png') }}" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com/tottusperu/" target="_blank">
+            <img src="{{ asset('imagenes/icons/instagram.png') }}" alt="Instagram">
+        </a>
+        <a href="https://www.youtube.com/@TottusPeru" target="_blank">
+            <img src="{{ asset('imagenes/icons/youtube.png') }}" alt="YouTube">
+        </a>
+      </div>
+      <div class="footer-links">
+        <a
+          href="https://assets.contentstack.io/v3/assets/blt422ac29cebae1d64/blt3dabc5c40faa057e/67db3e1e1c722200f543b13d/TC_Web_y_App_v3_18.03.25_vf.pdf">Terminos
+          y condiciones</a>
+        <a
+          href="https://assets.contentstack.io/v3/assets/blt422ac29cebae1d64/bltb0dcce37212d19b6/680a53d983ae052f59e06575/Politica_de_Cookies_Tottus_Peru%CC%81_2025_4931-0316-7279_v.1.pdf">Politica
+          de cookies</a>
+        <a href="https://www.tottus.com.pe/tottus-pe/content/politica-de-privacidad">Politica de privacidad</a>
+      </div>
+      <div class="footer-separator"></div>
+      <div class="footer-copyright">
+        <p>© TODOS LOS DERECHOS RESERVADOS</p>
+        <p>Av. Angamos Este N° 1805 Piso 10, Surquillo, Lima, Perú.</p>
+      </div>
+    </footer>
+  
 
 
 

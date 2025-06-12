@@ -1,294 +1,568 @@
-/* resources/css/app.css */
-
-/* --- Variables CSS (Opcional, pero recomendado para consistencia) --- */
+/* Variables CSS para una gestión de colores más sencilla */
 :root {
-    --primary-color: #EE1D23; /* Rojo TOTTUS */
-    --secondary-color: #004D9D; /* Azul oscuro */
-    --text-color: #333;
-    --light-gray: #f4f4f4;
-    --border-color: #ddd;
-    --font-family: Arial, sans-serif;
+    --color-primary-tottus: #00A750; /* Verde Tottus principal */
+    --color-secondary-green: #6CA600; /* Verde de acento (para el carrito, por ejemplo) */
+    --color-text-dark: #333;
+    --color-text-light: #555;
+    --color-background-light: #f8f8f8;
+    --color-white: #ffffff;
+    --color-border-light: #ddd;
+    --font-family-primary: 'Arial', sans-serif; /* Puedes cambiar por 'Poppins', 'Roboto', etc. si importas fuentes de Google Fonts */
 }
 
-/* --- Estilos Generales / Reset básico --- */
-body {
-    font-family: var(--font-family);
+/* Reset básico y estilos generales */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-primary);
     line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--light-gray);
+    color: var(--color-text-dark);
+    background-color: var(--color-background-light);
+    overflow-x: hidden; /* Evita scroll horizontal no deseado */
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px; /* Ancho máximo para contenido */
-    margin: 0 auto;
-    padding: 20px 0;
+a {
+    text-decoration: none;
+    color: var(--color-primary-tottus);
 }
 
-/* --- Header / Encabezado --- */
+a:hover {
+    color: var(--color-secondary-green);
+}
+
+/* ----------------------------------------------------- */
+/* ESTILOS DEL ENCABEZADO (HEADER) */
+/* ----------------------------------------------------- */
 .header-alimentos {
-    background-color: #fff;
-    border-bottom: 1px solid var(--border-color);
-    padding: 15px 0;
-    display: flex; /* Para alinear elementos en línea */
-    justify-content: space-between; /* Espacia los elementos */
-    align-items: center; /* Centra verticalmente */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-border-light);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    gap: 15px; /* Espacio entre elementos del header */
 }
 
 .header-alimentos h1 {
-    margin: 0;
-    color: var(--primary-color);
     font-size: 2.2em;
-    padding-left: 20px; /* Espacio a la izquierda del logo */
+    font-weight: bold;
+    color: var(--color-text-dark);
 }
 
 .header-alimentos h1 span {
-    color: var(--secondary-color); /* Si 'TOTTUS' es un span para otro color */
+    color: var(--color-primary-tottus);
 }
 
 .zona-superior-derecha {
     display: flex;
     align-items: center;
-    gap: 20px; /* Espacio entre los elementos (buscador, carrito) */
-    padding-right: 20px; /* Espacio a la derecha */
+    gap: 20px;
+    flex-wrap: wrap; /* Para que se adapte en pantallas pequeñas */
 }
 
 .barra-busqueda-principal {
     display: flex;
+    border: 1px solid var(--color-border-light);
+    border-radius: 5px;
+    overflow: hidden;
+    flex-grow: 1; /* Permite que la barra de búsqueda crezca */
+    max-width: 350px; /* Ancho máximo para la barra */
 }
 
-.barra-busqueda-principal input[type="text"] {
-    padding: 8px 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px 0 0 4px;
+.barra-busqueda-principal input {
+    border: none;
+    padding: 10px 15px;
     font-size: 1em;
-    flex-grow: 1; /* Permite que crezca */
+    outline: none;
+    flex-grow: 1;
 }
 
 .barra-busqueda-principal button {
-    padding: 8px 15px;
-    background-color: var(--secondary-color);
-    color: white;
-    border: 1px solid var(--secondary-color);
-    border-radius: 0 4px 4px 0;
+    background-color: var(--color-primary-tottus);
+    color: var(--color-white);
+    border: none;
+    padding: 10px 20px;
     cursor: pointer;
     font-size: 1em;
     transition: background-color 0.3s ease;
 }
 
 .barra-busqueda-principal button:hover {
-    background-color: #003a7a; /* Un azul más oscuro al pasar el mouse */
+    background-color: var(--color-secondary-green);
 }
 
-.carrito-link {
+.contenedor-carrito .boton-carrito {
+    background-color: var(--color-primary-tottus);
+    color: var(--color-white);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
     display: flex;
     align-items: center;
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: bold;
-    gap: 5px;
+    gap: 8px; /* Espacio entre el icono y el texto */
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.carrito-link img { /* Para el icono del carrito si es una imagen */
-    width: 24px;
-    height: 24px;
+.contenedor-carrito .boton-carrito:hover {
+    background-color: var(--color-secondary-green);
+    transform: translateY(-2px);
 }
 
-.carrito-link:hover {
-    color: var(--primary-color);
-}
-
-
-/* --- Barra de Navegación de Categorías (Main Nav) --- */
-.main-nav {
-    background-color: #fff;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.main-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+/* ----------------------------------------------------- */
+/* NAVEGACIÓN LATERAL / CONTENEDOR PRINCIPAL */
+/* ----------------------------------------------------- */
+.contenedor-navegacion {
     display: flex;
-    justify-content: center; /* Centra los elementos de la lista */
-    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea si no hay espacio */
-    gap: 20px; /* Espacio entre los ítems */
+    gap: 30px;
+    padding: 30px 40px;
+    max-width: 1300px;
+    margin: 0 auto; /* Centrar el contenido */
 }
 
-.main-nav li a {
-    text-decoration: none;
-    color: var(--secondary-color);
-    font-weight: bold;
-    padding: 5px 10px;
-    transition: color 0.3s ease;
+.navegacion-alimentos {
+    flex: 0 0 220px; /* Ancho fijo para la navegación lateral */
+    background-color: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 20px 0;
+    align-self: flex-start; /* Se alinea al inicio del contenedor flex */
+    position: sticky; /* Fija la navegación lateral al hacer scroll */
+    top: 20px; /* Distancia desde la parte superior de la ventana */
+    height: fit-content; /* Ajusta la altura al contenido */
 }
 
-.main-nav li a:hover {
-    color: var(--primary-color);
+.navegacion-alimentos ul {
+    list-style: none;
 }
 
-/* --- Sección de Promociones (Sliders / Banners) --- */
-.seccion-promociones {
-    margin-top: 20px;
-    text-align: center; /* Para centrar las imágenes de promoción */
+.navegacion-alimentos ul li a {
+    display: block;
+    padding: 12px 25px;
+    color: var(--color-text-light);
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.seccion-promociones img {
-    max-width: 100%; /* Asegura que la imagen no se desborde del contenedor */
-    height: auto; /* Mantiene la proporción */
+.navegacion-alimentos ul li a:hover {
+    background-color: var(--color-primary-tottus);
+    color: var(--color-white);
+    border-radius: 0 5px 5px 0; /* Bordes redondeados solo a la derecha en hover */
+}
+
+/* ----------------------------------------------------- */
+/* SECCIÓN DE BANNER / SLIDER */
+/* ----------------------------------------------------- */
+.banner-slider {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Ancho máximo para el slider */
+    margin-bottom: 40px; /* Espacio debajo del slider */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex-grow: 1; /* Permite que el slider ocupe el espacio restante */
+}
+
+.banner-slider .slide {
+    display: none;
+    width: 100%;
+}
+
+.banner-slider .slide.active {
+    display: block;
+}
+
+.banner-slider img {
+    width: 100%;
+    height: auto;
     display: block; /* Elimina espacio extra debajo de la imagen */
-    margin: 0 auto 10px auto; /* Centra y da un poco de margen abajo */
-    border-radius: 8px; /* Bordes ligeramente redondeados */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsión */
+    max-height: 350px; /* Altura máxima para los banners */
 }
 
-/* Estilos para los botones de navegación de la promoción (si son los <> del HTML) */
-.seccion-promociones button {
-    background-color: var(--secondary-color);
+.banner-slider .prev,
+.banner-slider .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    padding: 8px 15px;
+    padding: 12px 18px;
     cursor: pointer;
-    margin: 0 5px;
-    border-radius: 5px;
-    font-size: 1.2em;
+    font-size: 1.5em;
+    border-radius: 50%;
     transition: background-color 0.3s ease;
 }
 
-.seccion-promociones button:hover {
-    background-color: var(--primary-color);
+.banner-slider .prev:hover,
+.banner-slider .next:hover {
+    background-color: var(--color-primary-tottus);
 }
 
-/* --- Sección Destacados de la Semana --- */
-.destacados-semana {
-    margin-top: 30px;
+.banner-slider .prev {
+    left: 15px;
 }
 
-.destacados-semana h2 {
-    text-align: center;
-    color: var(--primary-color);
-    font-size: 2em;
-    margin-bottom: 20px;
+.banner-slider .next {
+    right: 15px;
 }
 
+/* ----------------------------------------------------- */
+/* SECCIÓN DE PRODUCTOS DESTACADOS */
+/* ----------------------------------------------------- */
 .productos-destacados {
-    display: flex; /* Para poner los productos en fila */
-    flex-wrap: wrap; /* Si hay muchos, que pasen a la siguiente línea */
-    justify-content: center; /* Centra los productos */
-    gap: 25px; /* Espacio entre productos */
+    flex-grow: 1; /* Ocupa el espacio restante después del slider */
 }
 
-.producto-item { /* Asumo que cada producto tendrá una clase similar */
-    background-color: #fff;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 15px;
+.productos-destacados h2 {
+    font-size: 2em;
+    color: var(--color-primary-tottus);
+    margin-bottom: 25px;
     text-align: center;
-    width: 200px; /* Ancho fijo para cada producto, ajustar según necesidad */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-bottom: 2px solid var(--color-primary-tottus);
+    padding-bottom: 10px;
+}
+
+.lista-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Grid responsivo */
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.producto {
+    background-color: var(--color-white);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empuja el botón al final */
+}
+
+.producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.producto img {
+    max-width: 100%;
+    height: 180px; /* Altura fija para las imágenes de producto */
+    object-fit: contain; /* Asegura que la imagen se ajuste sin recortar */
+    margin-bottom: 15px;
+}
+
+.producto h3 {
+    font-size: 1.2em;
+    color: var(--color-text-dark);
+    margin-bottom: 10px;
+    flex-grow: 1; /* Permite que el título ocupe espacio si es largo */
+}
+
+.producto .precio {
+    font-size: 1.3em;
+    color: var(--color-primary-tottus);
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.producto .boton-comprar {
+    background-color: var(--color-primary-tottus);
+    color: var(--color-white);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%; /* Botón de ancho completo */
+}
+
+.producto .boton-comprar:hover {
+    background-color: var(--color-secondary-green);
+    transform: translateY(-2px);
+}
+
+/* ----------------------------------------------------- */
+/* ZONA DE DESCUENTOS VISUALES */
+/* ----------------------------------------------------- */
+.zona-descuentos {
+    margin-top: 50px;
+    padding: 0 40px; /* Asegura que la sección tenga padding en los lados */
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.zona-descuentos h2 {
+    font-size: 2em;
+    color: var(--color-primary-tottus);
+    margin-bottom: 25px;
+    text-align: center;
+    border-bottom: 2px solid var(--color-primary-tottus);
+    padding-bottom: 10px;
+}
+
+.descuentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Grid responsivo para descuentos */
+    gap: 25px;
+}
+
+.descuento-item {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.producto-item:hover {
-    transform: translateY(-5px); /* Pequeño efecto al pasar el mouse */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+.descuento-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-.producto-item img {
-    max-width: 100%;
+.descuento-item img {
+    width: 100%;
     height: auto;
-    border-radius: 4px;
-    margin-bottom: 10px;
+    display: block;
+    object-fit: cover;
 }
 
-.producto-item h3 {
-    font-size: 1.2em;
-    color: var(--text-color);
-    margin-bottom: 5px;
-}
-
-.producto-item .precio {
-    font-size: 1.4em;
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-}
-
-.producto-item button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
-}
-
-.producto-item button:hover {
-    background-color: #c9191e; /* Un rojo más oscuro */
-}
-
-/* --- Footer --- */
-.main-footer {
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 20px 0;
+/* ----------------------------------------------------- */
+/* FOOTER */
+/* ----------------------------------------------------- */
+.footer-alimentos {
+    background-color: var(--color-text-dark);
+    color: var(--color-white);
+    padding: 30px 40px;
+    margin-top: 50px;
     text-align: center;
-    margin-top: 40px;
+}
+
+.footer-social {
+    margin-bottom: 20px;
 }
 
 .footer-social img {
     width: 30px;
     height: 30px;
     margin: 0 10px;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
 }
 
 .footer-social img:hover {
     transform: scale(1.1);
 }
 
-.main-footer p {
-    margin: 10px 0 0 0;
-    font-size: 0.9em;
+.footer-links {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-/* --- Media Queries (Para Responsiveness Básico) --- */
-@media (max-width: 768px) {
+.footer-links a {
+    color: var(--color-white);
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.footer-separator {
+    width: 80%;
+    max-width: 600px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 20px auto;
+}
+
+.footer-copyright p {
+    font-size: 0.9em;
+    opacity: 0.7;
+}
+
+/* ----------------------------------------------------- */
+/* ESTILO DE LA ALERTA DE CARRITO */
+/* ----------------------------------------------------- */
+#alerta-carrito {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-secondary-green); /* Usamos el verde de acento */
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-size: 1.1em;
+    animation: fadeInOut 4s forwards; /* Animación simple para que aparezca y desaparezca */
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+}
+
+
+/* ----------------------------------------------------- */
+/* RESPONSIVIDAD (Media Queries) */
+/* ----------------------------------------------------- */
+
+/* Para pantallas más pequeñas que 1024px (típicamente tablets y laptops pequeñas) */
+@media (max-width: 1024px) {
+    .contenedor-navegacion {
+        flex-direction: column; /* Apila la navegación y el contenido principal */
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .navegacion-alimentos {
+        width: 100%;
+        max-width: none; /* Elimina el ancho fijo */
+        position: static; /* Elimina el sticky para que fluya normalmente */
+        margin-bottom: 20px;
+        padding: 15px 0;
+    }
+
+    .navegacion-alimentos ul {
+        display: flex; /* Convierte la lista en una fila para pantallas más pequeñas */
+        flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+        justify-content: center;
+        gap: 10px; /* Espacio entre los ítems de navegación */
+    }
+
+    .navegacion-alimentos ul li a {
+        padding: 10px 15px;
+        border-radius: 5px; /* Bordes redondeados en todos los lados */
+    }
+
+    .banner-slider {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+
     .header-alimentos {
-        flex-direction: column; /* Apila elementos en pantallas pequeñas */
+        padding: 15px 20px;
+        flex-direction: column; /* Apila los elementos del header */
         align-items: flex-start; /* Alinea a la izquierda */
-        padding: 15px;
+        gap: 10px;
     }
 
     .zona-superior-derecha {
-        flex-direction: column;
-        align-items: flex-start;
         width: 100%;
-        padding: 10px 0;
+        justify-content: space-between; /* Espacio entre barra de búsqueda y carrito */
+    }
+
+    .barra-busqueda-principal {
+        max-width: none; /* Permite que ocupe todo el ancho disponible */
+    }
+
+    .productos-destacados h2,
+    .zona-descuentos h2 {
+        font-size: 1.8em;
+    }
+}
+
+/* Para pantallas más pequeñas que 768px (típicamente tablets en vertical y móviles) */
+@media (max-width: 768px) {
+    .header-alimentos h1 {
+        font-size: 1.8em;
+        text-align: center;
+        width: 100%;
+    }
+
+    .zona-superior-derecha {
+        flex-direction: column; /* Apila la barra de búsqueda y el carrito */
+        align-items: center;
+        width: 100%;
     }
 
     .barra-busqueda-principal {
         width: 100%;
-        margin-bottom: 10px;
     }
 
-    .main-nav ul {
-        flex-direction: column; /* Apila las categorías */
-        align-items: center;
+    .navegacion-alimentos ul {
+        justify-content: space-around; /* Distribuye los ítems de navegación uniformemente */
     }
 
-    .producto-item {
-        width: 100%; /* Ocupa todo el ancho disponible */
+    .navegacion-alimentos ul li {
+        width: 48%; /* Dos columnas en la navegación */
+        text-align: center;
+    }
+
+    .lista-productos {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Productos más pequeños en móviles */
+        gap: 20px;
+    }
+
+    .producto {
+        padding: 15px;
+    }
+
+    .producto h3 {
+        font-size: 1.1em;
+    }
+
+    .producto .precio {
+        font-size: 1.2em;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
     }
 }
 
+/* Para móviles pequeños (menos de 480px) */
 @media (max-width: 480px) {
-    .header-alimentos h1 {
-        font-size: 1.8em;
+    .header-alimentos,
+    .contenedor-navegacion,
+    .zona-descuentos,
+    .footer-alimentos {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .navegacion-alimentos ul li {
+        width: 100%; /* Un elemento por fila en la navegación */
+    }
+
+    .navegacion-alimentos ul li a {
+        padding: 12px 0; /* Mayor altura de los botones de navegación */
+    }
+
+    .lista-productos {
+        grid-template-columns: 1fr; /* Una sola columna de productos */
+    }
+
+    .descuentos-grid {
+        grid-template-columns: 1fr; /* Una sola columna para descuentos */
+    }
+
+    .banner-slider .prev,
+    .banner-slider .next {
+        padding: 8px 12px;
+        font-size: 1.2em;
     }
 }
