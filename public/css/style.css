@@ -3,7 +3,7 @@
 
 /* Variables CSS para una gestión de colores más sencilla */
 :root {
-    --color-primary-tottus: #00A750; /* Verde Tottus principal */
+    --color-primary-tottus: #6CA600; /* Verde Tottus principal */
     --color-secondary-green: #6CA600; /* Verde de acento (para el carrito, por ejemplo) */
     --color-text-dark: #333;
     --color-text-light: #555;
@@ -605,7 +605,7 @@ a:hover {
     height: 60px;    /* Alto del botón */
     bottom: 40px;    /* Distancia desde la parte inferior */
     right: 40px;     /* Distancia desde el lado derecho */
-    background-color: #25d366; /* Color de fondo de WhatsApp */
+    background-color: #6CA600; /* Color de fondo de WhatsApp */
     color: #FFF;     /* Color del icono (si fuera un icono de texto) */
     border-radius: 50px; /* Hace que sea un círculo */
     text-align: center;  /* Centra el icono */
@@ -619,9 +619,9 @@ a:hover {
 }
 
 .whatsapp-float:hover {
-    background-color: #1da851; /* Un verde un poco más oscuro al pasar el ratón */
+    background-color: #25D366; /* Un verde un poco más oscuro al pasar el ratón */
 }
-
+    
 .whatsapp-icon-float {
     width: 35px; /* Tamaño del ícono de WhatsApp dentro del botón */
     height: 35px;
