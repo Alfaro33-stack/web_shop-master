@@ -1,64 +1,144 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Web Shop
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistema de tienda en línea desarrollado con Laravel.
 
-## About Laravel
+## Requisitos Previos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- PHP >= 8.1
+- Composer
+- MySQL >= 5.7
+- Node.js y NPM (para assets)
+- Git
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Pasos de Instalación
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. **Clonar el repositorio**
+   ```bash
+   git clone <url-del-repositorio>
+   cd web_shop-master
+   ```
 
-## Learning Laravel
+2. **Instalar dependencias de PHP**
+   ```bash
+   composer install
+   ```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. **Configurar el archivo .env**
+   ```bash
+   cp .env.example .env
+   ```
+   Editar el archivo `.env` y configurar:
+   - `DB_CONNECTION=mysql`
+   - `DB_HOST=127.0.0.1`
+   - `DB_PORT=3306`
+   - `DB_DATABASE=web_shop`
+   - `DB_USERNAME=tu_usuario`
+   - `DB_PASSWORD=tu_contraseña`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+4. **Generar clave de aplicación**
+   ```bash
+   php artisan key:generate
+   ```
 
-## Laravel Sponsors
+5. **Crear la base de datos**
+   ```bash
+   mysql -u root -p
+   CREATE DATABASE web_shop;
+   exit;
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+6. **Ejecutar migraciones y seeders**
+   ```bash
+   php artisan migrate:fresh --seed
+   ```
+   Esto creará:
+   - Tablas necesarias
+   - Usuario administrador
+   - Categorías de ejemplo
+   - Productos de ejemplo
 
-### Premium Partners
+7. **Crear enlace simbólico para el almacenamiento**
+   ```bash
+   php artisan storage:link
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+8. **Instalar dependencias de Node.js (opcional, si se modificarán los assets)**
+   ```bash
+   npm install
+   npm run dev
+   ```
 
-## Contributing
+9. **Iniciar el servidor de desarrollo**
+   ```bash
+   php artisan serve
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Credenciales de Acceso
 
-## Code of Conduct
+### Usuario Administrador
+- Email: admin@admin.com
+- Contraseña: password
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Estructura del Proyecto
 
-## Security Vulnerabilities
+- `app/` - Código fuente principal
+  - `Http/Controllers/` - Controladores
+  - `Models/` - Modelos de la base de datos
+  - `Http/Middleware/` - Middleware de la aplicación
+- `database/` - Migraciones y seeders
+- `resources/` - Vistas y assets
+- `routes/` - Definición de rutas
+- `storage/` - Archivos subidos y generados
+- `public/` - Punto de entrada y assets públicos
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Características Principales
 
-## License
+- Catálogo de productos
+- Categorías de productos
+- Carrito de compras
+- Sistema de pedidos
+- Panel de administración
+- Gestión de usuarios
+- Gestión de productos
+- Gestión de categorías
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Comandos Útiles
+
+- `php artisan serve` - Iniciar servidor de desarrollo
+- `php artisan migrate` - Ejecutar migraciones
+- `php artisan migrate:fresh --seed` - Reiniciar base de datos y ejecutar seeders
+- `php artisan storage:link` - Crear enlace simbólico para storage
+- `php artisan make:controller NombreController` - Crear nuevo controlador
+- `php artisan make:model NombreModel -m` - Crear nuevo modelo con migración
+
+## Solución de Problemas Comunes
+
+1. **Error de permisos en storage**
+   ```bash
+   chmod -R 775 storage
+   chmod -R 775 bootstrap/cache
+   ```
+
+2. **Error de composer**
+   ```bash
+   composer dump-autoload
+   ```
+
+3. **Error de caché**
+   ```bash
+   php artisan cache:clear
+   php artisan config:clear
+   php artisan view:clear
+   ```
+
+## Contribuir
+
+1. Fork el proyecto
+2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abrir un Pull Request
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT.
