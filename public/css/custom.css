@@ -183,16 +183,19 @@
 }
 
 .banner-horizontal-thin .banner-content-right {
-    position: absolute; /* Asegura que se posicione correctamente */
-    top: 50%; /* Centra verticalmente */
-    left: 50%; /* Centra horizontalmente */
-    transform: translate(-50%, -50%); /* Ajuste para centrado real */
-    width: 90%; /* Ajusta el ancho del contenedor de texto */
+    /* Estos estilos ya están bien, ya que el fondo blanco semi-transparente
+       es intencional para que el texto sea legible sobre la imagen.
+       El problema era la falta de la imagen. */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
     padding: 10px 20px;
     text-align: center;
-    color: #333; /* Texto oscuro */
-    text-shadow: none; /* Sin sombra */
-    background-color: rgba(255, 255, 255, 0.7); /* Fondo semi-transparente para el texto */
+    color: #333;
+    text-shadow: none;
+    background-color: rgba(255, 255, 255, 0.7); /* Este es el "blanco" */
     border-radius: 5px;
 }
 
@@ -200,7 +203,7 @@
     font-size: 2em;
     line-height: 1;
     margin-bottom: 5px;
-    color: #6A994E; /* Verde Tottus */
+    color: #6A994E;
 }
 
 .banner-horizontal-thin .banner-content-right .slogan-text {

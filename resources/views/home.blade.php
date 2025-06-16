@@ -1,58 +1,68 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- BANNERS PRINCIPALES (1 Vertical, 2 Horizontales) --}}
+{{-- BANNERS PRINCIPALES --}}
 <div class="container-fluid px-0"> {{-- Usamos container-fluid y px-0 para que los banners se extiendan por todo el ancho --}}
     <div class="row g-0"> {{-- g-0 para eliminar los gutters/espacio entre columnas --}}
-        {{-- Columna para el banner vertical (izquierda) --}}
+        
+        {{-- Columna para el BANNER VERTICAL (izquierda) --}}
         <div class="col-lg-4 col-md-5">
             <div class="banner-vertical position-relative">
-                <img src="{{ asset('images/banners/banner_vertical.png') }}" class="img-fluid w-100" alt="Banner Cebolla">
+                {{-- Asegúrate de que 'banner_vertical.png' esté en public/images/banners/ --}}
+                <img src="{{ asset('images/banners/banner_vertical.png') }}" class="img-fluid w-100" alt="Ahorra con Tottus">
                 <div class="banner-content banner-content-left p-3">
-                    <p class="small-text">ONION FAMILY SAY7</p>
-                    <h2 class="title-text">Hello</h2>
-                    <p class="bottom-text">TO MASTERCHEF!</p>
+                    <p class="small-text">Ahorra con</p>
+                    <h2 class="title-text">TOTTUS</h2>
+                    <p class="bottom-text">ahora en PedidosYa</p>
                 </div>
             </div>
         </div>
 
-        {{-- Columna para los dos banners horizontales (derecha) --}}
+        {{-- Columna para los dos BANNERS HORIZONTALES (derecha) --}}
         <div class="col-lg-8 col-md-7">
             <div class="row g-0"> {{-- g-0 para eliminar los gutters entre los banners horizontales --}}
+                
+                {{-- BANNER SUPERIOR HORIZONTAL --}}
                 <div class="col-12">
-                    <div class="banner-horizontal position-relative mb-0"> {{-- mb-0 para pegar al banner de abajo --}}
-                        <img src="{{ asset('images/banner_plum.jpg') }}" class="img-fluid w-100" alt="Banner Ciruelas">
+                    <div class="banner-horizontal position-relative mb-0">
+                        {{-- Asegúrate de que 'banner_verticalgrande.png' esté en public/images/banners/ --}}
+                        {{-- (Revisa si el nombre 'banner_verticalgrande.png' es el correcto para un banner horizontal) --}}
+                        <img src="{{ asset('images/banners/banner_verticalgrande.png') }}" class="img-fluid w-100" alt="Oferta Especial">
                         <div class="banner-content banner-content-center p-3 text-white">
-                            <h3 class="title-text">Strawberry</h3>
-                            <p class="slogan-text">Simply Natural & Tasty</p>
-                            <a href="#" class="btn btn-primary btn-shop-now">SHOP NOW <i class="fas fa-arrow-right ms-2"></i></a>
+                            <h3 class="title-text">DELIVERY GRATIS</h3>
+                            <p class="slogan-text">con todo medio de pago</p>
+                            <a href="{{ route('productos') }}" class="btn btn-primary btn-shop-now">SHOP NOW <i class="fas fa-arrow-right ms-2"></i></a>
+                            {{-- Círculo de descuento (revisa si los valores de texto se deben poblar dinámicamente) --}}
                             <div class="discount-circle position-absolute top-0 end-0 me-3 mt-3">
-                                <span class="d-block text-center sale-text">SALE</span>
-                                <span class="d-block text-center percent-text">-25%</span>
-                            </div>
-                            <div class="price-circle position-absolute bottom-0 end-0 me-3 mb-3">
-                                <span class="d-block text-center price-text">$36</span>
+                                <span class="d-block text-center sale-text">¡OFERTA!</span>
+                                <span class="d-block text-center percent-text">30%</span>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                {{-- BANNER INFERIOR HORIZONTAL (EL QUE TENÍA EL FONDO BLANCO SIN TEXTO Y SIN IMAGEN VISIBLE) --}}
                 <div class="col-12">
                     <div class="banner-horizontal-thin position-relative">
-                        <img src="{{ asset('images/banner_vegetables.jpg') }}" class="img-fluid w-100" alt="Banner Verduras">
-                        <div class="banner-content banner-content-right text-white p-3">
-                            <h3 class="title-text">TOTTUS</h3>
-                            <p class="slogan-text">Alimentos Frescos</p>
-                            <p class="description-text">Discover our amazing products and special offers</p>
-                            <a href="#" class="btn btn-primary btn-shop-now">Shop Now</a>
-                        </div>
+                        {{-- ¡Asegúrate de que 'banner2.jpg.webp' esté en public/images/banners/ --}}
+                        <img src="{{ asset('images/banners/banner2.jpg.webp') }}" class="img-fluid w-100" alt="Banner Verduras">
+                        
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="container mt-4"> {{-- Este es tu div container original, le añadimos mt-4 para separación --}}
+            </div> {{-- Fin .row g-0 para banners horizontales --}}
+        </div> {{-- Fin .col-lg-8 --}}
+    </div> {{-- Fin .row g-0 banners principales --}}
+</div> {{-- Fin .container-fluid --}}
+
+{{--
+    **IMPORTANTE:**
+    ELIMINA DEFINITIVAMENTE EL SIGUIENTE BLOQUE SI ES EL QUE CAUSABA LA DUPLICIDAD DE TEXTO
+    Y APARECÍA FUERA DE LOS BANNERS PRINCIPALES.
+    (Basado en imágenes anteriores como image_e78415.png)
+--}}
+{{--
+<div class="container mt-4">
     <div class="row mb-5">
         <div class="col-12 text-center">
             <h1 class="display-4">TOTTUS</h1>
@@ -61,9 +71,11 @@
             <a href="{{ route('productos') }}" class="btn btn-primary btn-lg">Shop Now</a>
         </div>
     </div>
-{{-- ... el resto de tu home.blade.php sigue aquí (Categories, Featured Products, etc.) ... --}}
+</div>
+--}}
 
-    <!-- Categories Section -->
+{{-- SECCIONES INFERIORES --}}
+<div class="container mt-4"> {{-- Añadido mt-4 para separación del grupo de banners --}}
     <div class="row mb-5">
         <div class="col-12">
             <h2 class="text-center mb-4">Nuestras Categorías</h2>
@@ -90,7 +102,6 @@
         </div>
     </div>
 
-    <!-- Featured Products Section -->
     <div class="row mb-5">
         <div class="col-12">
             <h2 class="text-center mb-4">Productos Destacados</h2>
@@ -122,7 +133,6 @@
         </div>
     </div>
 
-    <!-- Special Offers Section -->
     <div class="row mb-5">
         <div class="col-12">
             <h2 class="text-center mb-4">Ofertas Especiales</h2>
@@ -143,7 +153,6 @@
         </div>
     </div>
 
-    <!-- Newsletter Section -->
     <div class="row mb-5">
         <div class="col-12 text-center">
             <h2 class="mb-4">Únete a Nuestra Comunidad</h2>
