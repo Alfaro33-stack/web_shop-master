@@ -1,0 +1,481 @@
+/* Estilos para el botón de WhatsApp flotante */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px; /* Distancia desde abajo */
+    right: 40px; /* Distancia desde la derecha */
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1000; /* Un z-index alto para asegurar que esté encima de todo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* Quitar subrayado del enlace */
+    transition: background-color 0.3s; /* Efecto de transición al pasar el ratón */
+}
+
+.whatsapp-float:hover {
+    background-color: #128C7E; /* Color ligeramente más oscuro al pasar el ratón */
+    color: #FFF; /* Asegura que el color del texto no cambie */
+}
+
+/* Opcional: para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 25px;
+    }
+}
+/* --- Estilos para la sección de Banners (home.blade.php) --- */
+
+.banner-vertical,
+.banner-horizontal,
+.banner-horizontal-thin {
+    overflow: hidden; /* Asegura que el contenido no se desborde */
+    border-radius: 5px; /* Bordes ligeramente redondeados, opcional */
+}
+
+.banner-vertical img,
+.banner-horizontal img,
+.banner-horizontal-thin img {
+    display: block; /* Elimina espacio extra debajo de la imagen */
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
+    height: auto; /* Mantiene la proporción */
+    object-fit: cover; /* Recorta la imagen para cubrir el área sin distorsionar */
+    transition: transform 0.5s ease; /* Suave zoom al pasar el ratón */
+}
+
+/* Efecto hover de zoom en las imágenes del banner */
+.banner-vertical:hover img,
+.banner-horizontal:hover img,
+.banner-horizontal-thin:hover img {
+    transform: scale(1.05); /* Ligeramente más grande al pasar el ratón */
+}
+
+.banner-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar verticalmente */
+    align-items: flex-start; /* Alinear a la izquierda por defecto */
+    color: #fff; /* Color de texto por defecto si la imagen no tiene superposición oscura */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Sombra para mejor lectura */
+}
+
+/* Contenido del Banner Vertical (izquierda) */
+.banner-vertical .banner-content-left {
+    left: 10%; /* Ajuste a la izquierda */
+    width: 80%; /* Ancho del contenido */
+    align-items: flex-start; /* Alinear texto a la izquierda */
+    text-align: left;
+}
+
+.banner-vertical .banner-content-left .small-text {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.banner-vertical .banner-content-left .title-text {
+    font-family: 'Playfair Display', serif; /* O una fuente cursiva similar */
+    font-size: 3em; /* Tamaño de texto más grande */
+    line-height: 1;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.banner-vertical .banner-content-left .bottom-text {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* Contenido del Banner Superior Horizontal */
+.banner-horizontal .banner-content-center {
+    justify-content: center; /* Centrar verticalmente */
+    align-items: flex-start; /* Alinear a la izquierda */
+    left: 10%;
+    width: 80%;
+    text-align: left;
+}
+
+.banner-horizontal .banner-content-center .title-text {
+    font-family: 'Playfair Display', serif; /* O una fuente cursiva similar */
+    font-size: 3.5em; /* Tamaño de texto grande */
+    line-height: 1;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.banner-horizontal .banner-content-center .slogan-text {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    color: #eee;
+}
+
+.banner-horizontal .btn-shop-now {
+    background-color: #6A994E !important; /* Verde Tottus */
+    border-color: #6A994E !important;
+    color: #fff;
+    padding: 8px 20px;
+    font-weight: bold;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+.banner-horizontal .btn-shop-now:hover {
+    background-color: #55803E !important; /* Verde más oscuro */
+    border-color: #55803E !important;
+}
+
+/* Círculo de descuento y precio para el banner horizontal superior */
+.discount-circle, .price-circle {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+    border-radius: 50%;
+    width: 80px; /* Tamaño del círculo */
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.discount-circle .sale-text {
+    font-size: 0.7em;
+    color: #6A994E; /* Verde Tottus */
+    font-weight: bold;
+}
+.discount-circle .percent-text {
+    font-size: 1.5em;
+    color: #dc3545; /* Rojo para el porcentaje */
+    font-weight: bold;
+    line-height: 1;
+}
+
+.price-circle {
+    background-color: #dc3545; /* Rojo para el precio */
+}
+.price-circle .price-text {
+    font-size: 1.8em;
+    color: #fff;
+    font-weight: bold;
+    line-height: 1;
+}
+
+
+/* Contenido del Banner Inferior Horizontal (más delgado) */
+.banner-horizontal-thin img {
+    min-height: 150px; /* Altura mínima para el banner delgado */
+    object-position: center bottom; /* Ajusta la posición de la imagen si es necesario */
+}
+
+.banner-horizontal-thin .banner-content-right {
+    position: absolute; /* Asegura que se posicione correctamente */
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Ajuste para centrado real */
+    width: 90%; /* Ajusta el ancho del contenedor de texto */
+    padding: 10px 20px;
+    text-align: center;
+    color: #333; /* Texto oscuro */
+    text-shadow: none; /* Sin sombra */
+    background-color: rgba(255, 255, 255, 0.7); /* Fondo semi-transparente para el texto */
+    border-radius: 5px;
+}
+
+.banner-horizontal-thin .banner-content-right .title-text {
+    font-size: 2em;
+    line-height: 1;
+    margin-bottom: 5px;
+    color: #6A994E; /* Verde Tottus */
+}
+
+.banner-horizontal-thin .banner-content-right .slogan-text {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.banner-horizontal-thin .banner-content-right .description-text {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+/* MEDIA QUERIES para responsividad */
+@media (max-width: 767.98px) { /* Móviles */
+    .banner-vertical .banner-content-left .title-text {
+        font-size: 2em;
+    }
+    .banner-horizontal .banner-content-center .title-text {
+        font-size: 2.5em;
+    }
+    .banner-horizontal-thin img {
+        min-height: 120px; /* Reduce la altura en móviles */
+    }
+    .banner-horizontal-thin .banner-content-right {
+        left: 0;
+        width: 100%;
+        transform: translate(0, -50%); /* Ajuste para móviles */
+        padding: 10px;
+    }
+    .discount-circle, .price-circle {
+        width: 60px;
+        height: 60px;
+    }
+    .discount-circle .percent-text, .price-circle .price-text {
+        font-size: 1.2em;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) { /* Tablets */
+    .banner-vertical .banner-content-left .title-text {
+        font-size: 2.5em;
+    }
+    .banner-horizontal .banner-content-center .title-text {
+        font-size: 3em;
+    }
+}
+/* --- Nuevos estilos para el diseño "Organisk Organic Store" --- */
+/* Este es el código CSS largo que te di en el mensaje anterior.
+   DEBES PEGARLO AQUÍ, JUSTO DEBAJO DE LOS ESTILOS DEL BOTÓN DE WHATSAPP. */
+
+/* Estilos para la barra superior (top-bar) */
+.top-bar {
+    background-color: #f8f9fa; /* Un gris muy claro, similar al blanco del ejemplo */
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.85em;
+    color: #555; /* Color de texto general */
+}
+
+.top-bar .text-dark {
+    color: #333 !important; /* Asegura un color oscuro para los enlaces */
+}
+
+.top-bar .text-dark:hover {
+    color: #6A994E !important; /* Color verde al pasar el ratón */
+}
+
+.top-bar .list-inline-item:not(:last-child) {
+    margin-right: 1.5rem; /* Espaciado entre elementos de la lista */
+}
+
+
+/* Estilos para el Main Header (logo, buscador, iconos) */
+.main-header {
+    background-color: #ffffff; /* Fondo blanco */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.main-header .navbar-brand {
+    padding: 0;
+    margin: 0;
+    line-height: 1; /* Para que el slogan quede pegado al logo */
+}
+
+.main-header .logo-area h4 {
+    font-family: 'Nunito', sans-serif; /* Puedes ajustar la fuente si tienes una diferente */
+    font-size: 1.2em;
+    font-weight: normal;
+    margin-top: 5px;
+    color: #6A994E; /* Color verde para el slogan */
+}
+
+.main-header .search-bar .form-select,
+.main-header .search-bar .form-control {
+    border-color: #ced4da;
+    border-radius: 0.25rem;
+    height: 45px; /* Altura uniforme para el campo de búsqueda */
+}
+
+.main-header .search-bar .form-select {
+    max-width: 150px; /* Para controlar el ancho del select de categorías */
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.main-header .search-bar .form-control {
+    border-radius: 0;
+    box-shadow: none; /* Elimina la sombra por defecto al enfocar */
+}
+
+.main-header .search-bar .btn-outline-success {
+    background-color: #6A994E; /* Verde Organisk */
+    border-color: #6A994E;
+    color: #fff;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 45px; /* Altura uniforme para el botón */
+}
+
+.main-header .search-bar .btn-outline-success:hover {
+    background-color: #55803E; /* Verde más oscuro al pasar el ratón */
+    border-color: #55803E;
+}
+
+.main-header .header-icons a {
+    color: #333 !important;
+    text-decoration: none;
+    margin-left: 20px; /* Espacio entre los iconos y el carrito */
+}
+
+.main-header .header-icons a:hover {
+    color: #6A994E !important;
+}
+
+.main-header .cart-icon {
+    font-size: 1.1em;
+    position: relative; /* Asegura que la insignia se posicione correctamente */
+}
+
+.main-header .cart-icon .badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 0.65em;
+    padding: 0.3em 0.5em;
+    background-color: #dc3545; /* Rojo de Bootstrap para insignias */
+    transform: translate(50%, -50%); /* Ajuste fino para centrar la insignia */
+}
+
+.main-header .cart-icon span {
+    font-size: 1em;
+    color: #333;
+    margin-left: 5px; /* Espacio entre el icono del carrito y el precio */
+}
+
+
+/* Estilos para la barra de navegación principal (main-nav-bar) */
+.main-nav-bar {
+    background-color: #333; /* Color de fondo oscuro como en el ejemplo */
+    color: #fff;
+    /* border-bottom: 1px solid #222; Ya no es tan necesario si la sombra lo cubre */
+    padding: 0; /* Elimina el padding por defecto para un control total */
+    min-height: 55px; /* Altura mínima para la barra de navegación */
+}
+
+.main-nav-bar .navbar-brand { /* Si el logo aparece también en el nav bar en móviles */
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.main-nav-bar .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+}
+.main-nav-bar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+
+.main-nav-bar .navbar-nav .nav-item {
+    padding: 0 10px; /* Espacio entre items del menú */
+}
+
+.main-nav-bar .navbar-nav .nav-link {
+    color: #fff !important; /* Color del texto blanco */
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    /* padding-left: 1.5rem; */ /* Eliminado, se maneja con el padding del nav-item */
+    /* padding-right: 1.5rem; */ /* Eliminado */
+}
+
+.main-nav-bar .navbar-nav .nav-link:hover,
+.main-nav-bar .navbar-nav .nav-link.active {
+    color: #6A994E !important; /* Verde al pasar el ratón o activo */
+}
+
+/* Estilo para el botón "Shop Categories" */
+.shop-categories-btn .btn-primary {
+    background-color: #6A994E !important; /* Verde Organisk */
+    border-color: #6A994E !important;
+    font-weight: bold;
+    border-radius: 0; /* Sin bordes redondeados, como en la imagen */
+    padding: 1rem 1.5rem; /* Ajuste el padding para que sea más grande */
+    line-height: 1; /* Para que el icono y texto estén alineados */
+    color: #fff !important;
+}
+
+.shop-categories-btn .btn-primary:hover {
+    background-color: #55803E !important; /* Verde más oscuro al pasar el ratón */
+    border-color: #55803E !important;
+}
+
+/* Para asegurar que el sticky-top funcione bien con el margen del body */
+body {
+    padding-top: 0 !important; /* Resetea el padding-top que a veces Bootstrap añade por el navbar fijo */
+}
+
+.main-nav-bar.sticky-top {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1020; /* Mayor que el z-index del botón de WhatsApp si es 1000 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil cuando se fija */
+}
+
+/* Ajustes Responsivos */
+@media (max-width: 991.98px) { /* Para pantallas más pequeñas que lg (largas) */
+    .main-header .search-bar {
+        order: 3; /* Mueve la barra de búsqueda abajo en móviles */
+        width: 100%;
+        margin-top: 15px;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .main-header .logo-area {
+        order: 1; /* Asegura que el logo esté primero */
+        flex-grow: 1; /* Ocupa espacio para centrar mejor o empujar otros elementos */
+        text-align: left; /* Alinea el logo a la izquierda en móviles */
+    }
+    .main-header .header-icons {
+        order: 2; /* Mueve los iconos a la derecha del logo */
+    }
+    .main-header .header-icons .cart-icon {
+        margin-left: 10px; /* Ajusta el margen si es necesario */
+    }
+    .main-header .search-bar .input-group {
+        width: 100%;
+    }
+    .main-nav-bar .shop-categories-btn {
+        display: none !important; /* Oculta el botón en pantallas pequeñas */
+    }
+    .main-nav-bar .navbar-collapse {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 767.98px) { /* Para pantallas más pequeñas que md (medianas) */
+    .top-bar {
+        display: none !important; /* Oculta la barra superior en móviles */
+    }
+    .main-header {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .main-header .logo-area img {
+        height: 50px; /* Reduce el tamaño del logo en móviles */
+    }
+    .main-header .logo-area h4 {
+        font-size: 1em; /* Reduce el tamaño del slogan en móviles */
+    }
+    .main-header .cart-icon span {
+        display: none; /* Oculta el precio total del carrito en móviles para ahorrar espacio */
+    }
+}

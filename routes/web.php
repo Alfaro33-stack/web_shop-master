@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -29,6 +30,9 @@ Route::get('/productos/{product}', [ProductController::class, 'show'])->name('pr
 // Rutas de categorías
 Route::get('/categorias', [CategoryController::class, 'index'])->name('categorias');
 Route::get('/categorias/{category}', [CategoryController::class, 'show'])->name('categorias.show');
+
+//rutas
+Auth::routes();
 
 // Rutas del carrito
 Route::get('/carrito', [CartController::class, 'index'])->name('cart.index');

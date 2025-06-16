@@ -1,15 +1,67 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <!-- Hero Section -->
+{{-- BANNERS PRINCIPALES (1 Vertical, 2 Horizontales) --}}
+<div class="container-fluid px-0"> {{-- Usamos container-fluid y px-0 para que los banners se extiendan por todo el ancho --}}
+    <div class="row g-0"> {{-- g-0 para eliminar los gutters/espacio entre columnas --}}
+        {{-- Columna para el banner vertical (izquierda) --}}
+        <div class="col-lg-4 col-md-5">
+            <div class="banner-vertical position-relative">
+                <img src="{{ asset('images/banners/banner_vertical.png') }}" class="img-fluid w-100" alt="Banner Cebolla">
+                <div class="banner-content banner-content-left p-3">
+                    <p class="small-text">ONION FAMILY SAY7</p>
+                    <h2 class="title-text">Hello</h2>
+                    <p class="bottom-text">TO MASTERCHEF!</p>
+                </div>
+            </div>
+        </div>
+
+        {{-- Columna para los dos banners horizontales (derecha) --}}
+        <div class="col-lg-8 col-md-7">
+            <div class="row g-0"> {{-- g-0 para eliminar los gutters entre los banners horizontales --}}
+                <div class="col-12">
+                    <div class="banner-horizontal position-relative mb-0"> {{-- mb-0 para pegar al banner de abajo --}}
+                        <img src="{{ asset('images/banner_plum.jpg') }}" class="img-fluid w-100" alt="Banner Ciruelas">
+                        <div class="banner-content banner-content-center p-3 text-white">
+                            <h3 class="title-text">Strawberry</h3>
+                            <p class="slogan-text">Simply Natural & Tasty</p>
+                            <a href="#" class="btn btn-primary btn-shop-now">SHOP NOW <i class="fas fa-arrow-right ms-2"></i></a>
+                            <div class="discount-circle position-absolute top-0 end-0 me-3 mt-3">
+                                <span class="d-block text-center sale-text">SALE</span>
+                                <span class="d-block text-center percent-text">-25%</span>
+                            </div>
+                            <div class="price-circle position-absolute bottom-0 end-0 me-3 mb-3">
+                                <span class="d-block text-center price-text">$36</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="banner-horizontal-thin position-relative">
+                        <img src="{{ asset('images/banner_vegetables.jpg') }}" class="img-fluid w-100" alt="Banner Verduras">
+                        <div class="banner-content banner-content-right text-white p-3">
+                            <h3 class="title-text">TOTTUS</h3>
+                            <p class="slogan-text">Alimentos Frescos</p>
+                            <p class="description-text">Discover our amazing products and special offers</p>
+                            <a href="#" class="btn btn-primary btn-shop-now">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4"> {{-- Este es tu div container original, le añadimos mt-4 para separación --}}
     <div class="row mb-5">
         <div class="col-12 text-center">
-            <h1 class="display-4">Welcome to Our Store</h1>
+            <h1 class="display-4">TOTTUS</h1>
+            <h1 class="display-4">Alimentos Frescos</h1>
             <p class="lead">Discover our amazing products and special offers</p>
             <a href="{{ route('productos') }}" class="btn btn-primary btn-lg">Shop Now</a>
         </div>
     </div>
+{{-- ... el resto de tu home.blade.php sigue aquí (Categories, Featured Products, etc.) ... --}}
 
     <!-- Categories Section -->
     <div class="row mb-5">
