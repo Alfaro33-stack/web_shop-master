@@ -1,3 +1,50 @@
+/* Estilos para el banner de frutas de la izquierda */
+.fruit-banner-left img {
+    object-position: center; /* Centra la imagen dentro del contenedor */
+}
+
+/* Estilos para el texto superpuesto en banners */
+.banner-overlay-text {
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+/* Estilos para el banner Citrus Festivals */
+.citrus-banner img {
+    height: 250px; /* Altura fija para el banner de cítricos */
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+}
+
+/* Estilos específicos para la cuadrícula de iconos */
+.small-icon-grid .col a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Asegura que la tarjeta de icono ocupa todo el espacio disponible */
+    padding: 10px 5px; /* Ajusta el padding para los iconos */
+    transition: background-color 0.2s ease;
+}
+.small-icon-grid .col a:hover {
+    background-color: #f8f9fa; /* Color de fondo al pasar el ratón */
+    border-radius: .25rem; /* Bordes redondeados al pasar el ratón */
+}
+.small-icon-grid .col i {
+    font-size: 2.2rem; /* Tamaño de los iconos, ajusta según sea necesario */
+    margin-bottom: 5px;
+}
+
+/* Colores personalizados para algunos iconos si no hay uno específico */
+.text-purple { color: #8a2be2; }
+.text-orange { color: #fd7e14; }
+.text-pink { color: #d63384; }
+
+/* Estilos para las imágenes de productos destacados */
+.product-card .card-img-top {
+    height: 200px; /* Altura fija para las imágenes de los productos destacados */
+    object-fit: cover; /* Recorta las imágenes para que encajen sin distorsionarse */
+}
+
+
 /* Estilos para el botón de WhatsApp flotante */
 .whatsapp-float {
     position: fixed;

@@ -150,8 +150,7 @@
 
                 {{-- Elementos del menú principal --}}
                 <div class="collapse navbar-collapse justify-content-start" id="mainNavbarContent">
-                    <ul class="navbar-nav">
-                       
+                    <ul class="navbar-nav">                 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('productos', ['category' => 'frutas']) }}">FRUTAS</a>
                         </li>
@@ -185,7 +184,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-2">
             {{-- Mensajes de sesión (success/error) --}}
             @if(session('success'))
                 <div class="container">
