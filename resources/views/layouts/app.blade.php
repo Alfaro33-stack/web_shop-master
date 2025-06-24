@@ -17,10 +17,18 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap"
         rel="stylesheet"> --}}
 
+    {{-- ACTUALIZADO: Bootstrap CSS a la última versión estable (5.3.3 en este caso) --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    {{-- ACTUALIZADO: Font Awesome a la última versión estable (6.5.2 en este caso) --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    {{-- Deja app.css si lo usas para estilos generales de Laravel/Vite, pero custom.css será para los tuyos --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- Asegúrate de que esta línea esté presente y apunte a tu custom.css --}}
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 
@@ -150,7 +158,7 @@
 
                 {{-- Elementos del menú principal --}}
                 <div class="collapse navbar-collapse justify-content-start" id="mainNavbarContent">
-                    <ul class="navbar-nav">                 
+                    <ul class="navbar-nav">                
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('productos', ['category' => 'frutas']) }}">FRUTAS</a>
                         </li>
@@ -210,11 +218,22 @@
     </div> {{-- Cierre de #app --}}
 
     {{-- Botón Flotante de WhatsApp --}}
-    <a href="https://whatsapp.com/channel/0029VbAjhQ9GpLHImcDJy904" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <div class="social-float-buttons">
+        <a href="https://whatsapp.com/channel/0029VbAjhQ9GpLHImcDJy904" class="whatsapp-float" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.facebook.com/TottusPeru" class="facebook-float" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/tottusperu/" class="instagram-float" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    {{-- ACTUALIZADO: Bootstrap JS a la última versión estable --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
 </body>
 
 </html>

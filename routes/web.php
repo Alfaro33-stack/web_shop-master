@@ -8,7 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
-
+use App\Http\Controllers\ContactController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +18,8 @@ use App\Http\Controllers\OrderController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ruta contancto*/
+Route::get('/contacto', [ContactController::class, 'index'])->name('contact');
 
 // Rutas públicas
 Route::get('/', [HomeController::class, 'index'])->name('home');
