@@ -437,71 +437,69 @@ a:hover {
 /* Asegurar el mismo padding lateral para esta sección que para los banners principales */
 .fruit-categories-section {
     /* max-width se define en la sección de AJUSTE GLOBAL PARA CONTENEDORES PRINCIPALES */
-    padding-inline: var(--bs-gutter-x); /* Usa la variable de Bootstrap para un padding consistente */
+    padding-inline: var(--bs-gutter-x);
 }
 
 /* Esta regla es crucial para que las dos columnas principales (col-lg-6) se alineen en altura */
+/* ¡Ya tienes align-items-stretch en el HTML, lo cual es genial! */
 .fruit-categories-section .row.align-items-stretch {
-    display: flex;
-    align-items: stretch;
+    /* display: flex;  Ya lo tiene por defecto .row en Bootstrap 5 */
+    /* align-items: stretch; Ya lo tiene la clase en el HTML */
 }
 
 /* Columna izquierda: Banner grande "Fresh Fruits" */
 .fruit-category-banner {
-    height: 100%; /* El h-100 en el HTML ya lo hace, esto lo confirma */
+    /* H-100 en el HTML ya lo hace, esto lo confirma */
+    height: 100%;
 }
-.fruit-category-banner img {
-    /* Si quieres el efecto de imagen que sobresale ligeramente, descomenta y ajusta */
-    /* width: calc(100% + 10px); */
-    /* margin-left: -5px; */
-    /* object-position: center left; */
-}
-.banner-overlay-text { /* Reutiliza la clase global banner-overlay-text */
+
+/* El texto overlay ya está en tu CSS, no es necesario duplicarlo si no cambias los valores */
+.banner-overlay-text {
     top: 50%;
     transform: translateY(-50%);
     left: 15%;
     width: auto;
     text-align: left;
-    /* Asegura que el texto sea visible */
     color: white;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
 }
 
 /* Columna derecha: Cuadrícula de iconos Y banner horizontal */
+/* No fuerces alturas fijas. Deja que Flexbox las distribuya */
 
 /* 1. Cuadrícula de categorías/frutas (fila superior) */
 .small-icon-grid {
-    height: 350px; /* AJUSTADO: Altura para la cuadrícula de iconos. */
+    /* ELIMINA height: 350px; para usar flexbox */
     display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centra verticalmente los iconos */
-    padding: 1.5rem; /* Asegura un padding interno decente */
+    flex-direction: column; /* Apila los elementos internos */
+    justify-content: center; /* Centra verticalmente los iconos si es necesario */
+    padding: 1.5rem;
+    height: 100%; /* Permite que este div se estire. Opcional, pero recomendado con flex */
 }
+
 .small-icon-grid .row {
     width: 100%;
 }
-.small-icon-grid .col {
-    /* Estilos para cada item individual de la cuadrícula si necesitas ajustar su tamaño */
-}
-
 
 /* 2. Banner "Citrus Festivals 2016" (fila inferior) */
 .citrus-banner {
-    height: 200px; /* AJUSTADO: Altura para el banner de cítricos. */
-    /* La suma de small-icon-grid + margen mt-3 (1rem/16px) + citrus-banner debe igualar la altura de fruit-category-banner.
-       350px (grid) + 16px (mt-3) + 200px (citrus banner) = 566px.
-       Asegúrate de que el height de tu imagen en fruit-category-banner sea lo suficientemente grande para que esto funcione bien. */
+    /* ELIMINA height: 200px; para usar flexbox */
+    /* Añade flex-grow si quieres que este elemento crezca más que el otro */
+    /* flex-grow: 1; */ /* Puedes descomentar esto si quieres que crezca para llenar el espacio */
+    position: relative;
+    overflow: hidden;
 }
+
+/* Para que las imágenes llenen el contenedor */
+.fruit-category-banner img,
 .citrus-banner img {
-    object-position: center;
+    height: 100%; /* La imagen debe ocupar el 100% de la altura del contenedor padre */
+    object-fit: cover; /* Recorta la imagen para que no se distorsione */
 }
-/* Reutiliza la clase global banner-overlay-text para el contenido del banner cítrico */
-/* Ya debería estar cubierta por el estilo global de .banner-overlay-text */
 
 /* ===================================== */
 /* FIN SECCIÓN "Nuestras Categorías" */
 /* ===================================== */
-
 /* ===================================== */
 /* SECCIÓN DE PRODUCTOS DESTACADOS */
 /* ===================================== */
@@ -668,7 +666,7 @@ a:hover {
 .zona-descuentos, /* Añadido para que la sección de descuentos siga la misma alineación */
 .productos-destacados /* Asumiendo que esta también debe tener el mismo ancho máximo */
 {
-    max-width: 1400px; /* Puedes ajustar este valor si quieres que se expanda más o menos.
+    max-width:1500px;/*uedes ajustar este valor si quieres que se expanda más o menos.
                          1300px es un buen punto de partida para pantallas grandes.
                          Si quieres que sea *ligeramente* más ancho que el resto del contenido
                          pero sin llegar al extremo, este valor es clave. */
@@ -926,3 +924,4 @@ a:hover {
         margin-bottom: 5px; /* Ajusta también para móviles */
     }
 }
+
