@@ -109,7 +109,14 @@
                 <div class="banner-overlay-text text-white">
                     <h3 class="fw-bold mb-2">Fresh Fruits</h3>
                     <p class="mb-3">Best Prices</p>
-                    <a href="{{ route('productos.categoria', 'frutas') }}" class="btn btn-primary">Ver Frutas</a>
+                    @php
+                        $frutasCategory = $categories->where('name', 'Frutas')->first();
+                    @endphp
+                    @if($frutasCategory)
+                        <a href="{{ route('productos', ['category' => $frutasCategory->id]) }}" class="btn btn-primary">Ver Frutas</a>
+                    @else
+                        <a href="{{ route('productos') }}" class="btn btn-primary">Ver Productos</a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -228,7 +235,7 @@
                                 <div class="text-warning small mb-2">
                                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
                                 </div>
-                                <a href="{{ route('productos.show', $product) }}" class="btn btn-outline-primary btn-sm mt-auto">Ver Detalles</a>
+                                <a href="{{ route('productos.show', $product->id) }}" class="btn btn-outline-primary btn-sm mt-auto">Ver Detalles</a>
                             </div>
                         </div>
                     </div>

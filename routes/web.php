@@ -32,9 +32,6 @@ Route::get('/contacto', [ContactController::class, 'index'])->name('contact');
 // Rutas de productos
 Route::get('/productos', [ProductController::class, 'index'])->name('productos');
 Route::get('/productos/{product}', [ProductController::class, 'show'])->name('productos.show');
-// Si necesitas una ruta para productos por categoría (como en tu Blade):
-Route::get('/productos/categoria/{category}', [ProductController::class, 'filterByCategory'])->name('productos.categoria');
-// NOTA: Asegúrate de que tu ProductController tenga un método 'filterByCategory'
 
 // Rutas de categorías
 Route::get('/categorias', [CategoryController::class, 'index'])->name('categorias');
@@ -52,7 +49,7 @@ Auth::routes(); // Hay dos llamadas a Auth::routes(), solo necesitas una.
 // RUTAS DEL CARRITO
 // ===================================
 // Agrupa las rutas del carrito en un prefijo para organizarlas
-Route::prefix('carrito')->name('cart.')->group(function () {
+Route::prefix('carrito')->name('cart.')->middleware('auth')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('index');
     Route::post('/add/{product}', [CartController::class, 'add'])->name('add');
     Route::delete('/remove/{product}', [CartController::class, 'remove'])->name('remove');

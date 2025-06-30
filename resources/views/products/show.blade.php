@@ -31,7 +31,7 @@
                 @endif
             </div>
 
-            <form action="{{ route('cart.add') }}" method="POST" class="mb-4">
+            <form action="{{ route('cart.add', $product->id) }}" method="POST" class="mb-4">
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 <div class="input-group mb-3" style="max-width: 200px;">

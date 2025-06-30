@@ -13,19 +13,44 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Home',
-                'description' => 'Productos para el hogar y la vida diaria.',
-                'image' => 'https://picsum.photos/400/400?random=11',
+                'name' => 'Frutas',
+                'description' => 'Frutas frescas y de temporada para una alimentación saludable.',
+                'image' => 'https://picsum.photos/400/400?random=1',
             ],
             [
-                'name' => 'Wellbeing',
-                'description' => 'Bienestar, salud y fitness.',
-                'image' => 'https://picsum.photos/400/400?random=12',
+                'name' => 'Verduras',
+                'description' => 'Verduras frescas y orgánicas para una dieta balanceada.',
+                'image' => 'https://picsum.photos/400/400?random=2',
             ],
             [
-                'name' => 'Technology',
-                'description' => 'Tecnología y gadgets.',
-                'image' => 'https://picsum.photos/400/400?random=13',
+                'name' => 'Abarrotes',
+                'description' => 'Productos básicos para el hogar y la cocina.',
+                'image' => 'https://picsum.photos/400/400?random=3',
+            ],
+            [
+                'name' => 'Lácteos',
+                'description' => 'Productos lácteos frescos y derivados.',
+                'image' => 'https://picsum.photos/400/400?random=4',
+            ],
+            [
+                'name' => 'Carnes',
+                'description' => 'Carnes frescas y procesadas de la mejor calidad.',
+                'image' => 'https://picsum.photos/400/400?random=5',
+            ],
+            [
+                'name' => 'Bebidas',
+                'description' => 'Bebidas naturales, jugos y refrescos.',
+                'image' => 'https://picsum.photos/400/400?random=6',
+            ],
+            [
+                'name' => 'Panadería',
+                'description' => 'Productos de panadería frescos y artesanales.',
+                'image' => 'https://picsum.photos/400/400?random=7',
+            ],
+            [
+                'name' => 'Pastelería',
+                'description' => 'Pasteles, dulces y productos de repostería.',
+                'image' => 'https://picsum.photos/400/400?random=8',
             ],
         ];
 

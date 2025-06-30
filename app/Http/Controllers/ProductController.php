@@ -11,10 +11,12 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $query = Product::where('active', true);
+        $selectedCategory = null;
 
         // Filtrar por categoría
         if ($request->has('category')) {
             $query->where('category_id', $request->category);
+            $selectedCategory = Category::find($request->category);
         }
 
         // Ordenar por precio
@@ -37,7 +39,7 @@ class ProductController extends Controller
         $products = $query->paginate(12);
         $categories = Category::where('active', true)->get();
 
-        return view('products.index', compact('products', 'categories'));
+        return view('products.index', compact('products', 'categories', 'selectedCategory'));
     }
 
     public function show($id)

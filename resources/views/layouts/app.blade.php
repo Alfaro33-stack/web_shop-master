@@ -103,15 +103,11 @@
                     <form action="{{ route('productos') }}" method="GET" class="input-group">
                         <select class="form-select" name="category" aria-label="Category">
                             <option value=""> Categorías</option>
-                            {{-- Estas categorías son un ejemplo estático. Luego podemos hacerlas dinámicas. --}}
-                            <option value="frutas">Frutas</option>
-                            <option value="verduras">Verduras</option>
-                            <option value="abarrotes">Abarrotes</option>
-                            <option value="lacteos">Lácteos</option>
-                            <option value="carnes">Carnes</option>
-                            <option value="bebidas">Bebidas</option>
-                            <option value="panaderia">Panadería</option>
-                            <option value="pasteleria">Pastelería</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
                         </select>
                         <input type="text" class="form-control" name="search" placeholder="Buscar productos..."
                             aria-label="Buscar productos">
@@ -158,35 +154,14 @@
 
                 {{-- Elementos del menú principal --}}
                 <div class="collapse navbar-collapse justify-content-start" id="mainNavbarContent">
-                    <ul class="navbar-nav">                
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('productos', ['category' => 'frutas']) }}">FRUTAS</a>
-                        </li>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('productos', ['category' => 'verduras']) }}">VERDURAS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"
-                                href="{{ route('productos', ['category' => 'abarrotes']) }}">ABARROTES</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('productos', ['category' => 'lacteos']) }}">LÁCTEOS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('productos', ['category' => 'carnes']) }}">CARNES</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('productos', ['category' => 'bebidas']) }}">BEBIDAS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"
-                                href="{{ route('productos', ['category' => 'panaderia']) }}">PANADERÍA</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"
-                                href="{{ route('productos', ['category' => 'pasteleria']) }}">PASTELERÍA</a>
-                        </li>
+                    <ul class="navbar-nav"> 				
+                        @foreach($categories as $category)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('productos', ['category' => $category->id]) }}">
+                                    {{ strtoupper($category->name) }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -216,6 +191,75 @@
             @yield('content')
         </main>
     </div> {{-- Cierre de #app --}}
+
+    <footer class="footer-minimalist py-5">
+        <div class="container">
+            <div class="row align-items-start gy-4">
+                <!-- Logo e info -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="mb-3">
+                        <img src="{{ asset('images/logo/tottus_logo1.png') }}" alt="Tottus" style="height: 48px;">
+                    </div>
+                    <div class="mb-2 text-muted small">Call us free 24/7</div>
+                    <div class="fw-bold text-success mb-3" style="font-size:1.2em;">84 (01) 595-0000</div>
+                    <div class="d-flex gap-2">
+                        <a href="https://facebook.com/TottusPeru" class="footer-social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/tottusperu" class="footer-social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com" class="footer-social-link" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://whatsapp.com/channel/0029VbAjhQ9GpLHImcDJy904" class="footer-social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <!-- Contacto -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-title">Contact</div>
+                    <div class="footer-underline mb-3"></div>
+                    <div class="small text-muted mb-1">Address: Lima, Perú</div>
+                    <div class="small text-muted mb-1">Phone: (01) 595-0000</div>
+                    <div class="small text-muted mb-2">Mail: info@tottus.com.pe</div>
+                    <div class="d-flex gap-2 mt-2">
+                        <a href="https://facebook.com/TottusPeru" class="footer-social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/tottusperu" class="footer-social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <!-- Quicklinks -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-title">Quicklink</div>
+                    <div class="footer-underline mb-3"></div>
+                    <div class="row">
+                        <div class="col-6">
+                            <ul class="footer-list">
+                                <li><a href="#">Our Brand</a></li>
+                                <li><a href="#">Term of uses</a></li>
+                                <li><a href="#">Help & FAQ</a></li>
+                                <li><a href="#">Services</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul class="footer-list">
+                                <li><a href="{{ route('perfil') }}">My Account</a></li>
+                                <li><a href="{{ route('register') }}">Register</a></li>
+                                <li><a href="{{ route('login') }}">Login</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Newsletter -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-title">Newsletter</div>
+                    <div class="footer-underline mb-3"></div>
+                    <div class="small text-muted mb-2">Suscríbete para recibir ofertas y novedades especiales.</div>
+                    <form>
+                        <input type="email" class="footer-input mb-2" placeholder="Enter your email to get Special Offers">
+                    </form>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center small text-muted">
+                    Copyright © {{ date('Y') }} Tottus. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
 
     {{-- Botón Flotante de WhatsApp --}}
     <div class="social-float-buttons">
