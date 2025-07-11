@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="container py-5">
+    @if(session('success'))
+        <div class="alert alert-success">{{ strip_tags(session('success')) }}</div>
+    @endif
     <div class="row">
         <div class="col-md-8">
             <div class="card mb-4">
@@ -35,7 +38,7 @@
                                 <h6 class="mb-0">{{ $item->product->name }}</h6>
                                 <small class="text-muted">Cantidad: {{ $item->quantity }}</small>
                             </div>
-                            <span>${{ number_format($item->price * $item->quantity, 2) }}</span>
+                            <span>S/ {{ number_format($item->price * $item->quantity, 2) }}</span>
                         </div>
                     @endforeach
 
@@ -67,7 +70,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between mb-3">
                         <span>Subtotal</span>
-                        <span>${{ number_format($order->total, 2) }}</span>
+                        <span>S/ {{ number_format($order->total, 2) }}</span>
                     </div>
                     <div class="d-flex justify-content-between mb-3">
                         <span>Envío</span>
@@ -76,7 +79,7 @@
                     <hr>
                     <div class="d-flex justify-content-between">
                         <strong>Total</strong>
-                        <strong>${{ number_format($order->total, 2) }}</strong>
+                        <strong>S/ {{ number_format($order->total, 2) }}</strong>
                     </div>
                 </div>
             </div>

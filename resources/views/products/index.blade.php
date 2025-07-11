@@ -2,19 +2,16 @@
 
 @section('content')
 <!-- Banner superior -->
-<div class="shop-banner position-relative mb-4" style="background: url('{{ isset($selectedCategory) && $selectedCategory && $selectedCategory->image ? asset('images/' . $selectedCategory->image) : asset('images/banners/banner_carrusell-pica.png') }}') center/cover no-repeat; min-height: 220px;">
+<div class="shop-banner position-relative mb-4" style="background: url('{{ isset($selectedCategory) && $selectedCategory && $selectedCategory->image ? asset('images/' . $selectedCategory->image) : asset('images/banners/banner_carrusell-pica.png') }}') center/cover no-repeat; min-height: 450px;">
     <div class="container h-100 d-flex flex-column justify-content-center">
         <h1 class="text-white fw-bold display-5 mb-2" style="text-shadow: 0 2px 8px rgba(0,0,0,0.3);">
-            {{ isset($selectedCategory) && $selectedCategory ? $selectedCategory->name : 'Shop' }}
+            {{ isset($selectedCategory) && $selectedCategory ? $selectedCategory->name : '' }}
         </h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent p-0 mb-0">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-white-50">Home</a></li>
                 @if(isset($selectedCategory) && $selectedCategory)
-                    <li class="breadcrumb-item"><a href="{{ route('productos') }}" class="text-white-50">Shop</a></li>
                     <li class="breadcrumb-item active text-white" aria-current="page">{{ $selectedCategory->name }}</li>
-                @else
-                    <li class="breadcrumb-item active text-white" aria-current="page">Shop</li>
                 @endif
             </ol>
         </nav>
@@ -22,71 +19,25 @@
 </div>
 
 <div class="container">
-    <div class="row">
-        <!-- Panel lateral de filtros -->
-        <div class="col-lg-3 mb-4">
-            <div class="card border-0 shadow-sm mb-4">
-                <div class="card-header bg-success text-white fw-bold">Filter By Price</div>
-                <div class="card-body">
-                    <div class="mb-3">
-                        <input type="range" class="form-range" min="0" max="100" value="100" id="priceRange">
-                        <div class="d-flex justify-content-between small">
-                            <span>S/0</span>
-                            <span>S/100</span>
-                        </div>
-                    </div>
-                    <button class="btn btn-success w-100">FILTER</button>
-                </div>
-            </div>
-            <div class="card border-0 shadow-sm mb-4">
-                <div class="card-header bg-success text-white fw-bold">Product Categories</div>
-                <ul class="list-group list-group-flush">
-                    @foreach($categories as $category)
-                        <li class="list-group-item d-flex align-items-center">
-                            <span class="me-2"><i class="fas fa-apple-alt text-success"></i></span>
-                            <a href="{{ route('productos', ['category' => $category->id]) }}" class="text-dark text-decoration-none flex-grow-1">{{ $category->name }}</a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-            <div class="card border-0 shadow-sm">
-                <div class="card-header bg-success text-white fw-bold">Search</div>
-                <div class="card-body p-2">
-                    <form action="{{ route('productos') }}" method="GET">
-                        <input type="text" name="search" class="form-control mb-2" placeholder="Search Here..." value="{{ request('search') }}">
-                        <button class="btn btn-success w-100" type="submit"><i class="fas fa-search"></i> Search</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- Zona de productos -->
-        <div class="col-lg-9">
+    <div class="row justify-content-center">
+        <div class="col-12">
             <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
                 <div class="small text-muted mb-2 mb-lg-0">
-                    Showing {{ $products->firstItem() ?? 0 }} - {{ $products->lastItem() ?? 0 }} of {{ $products->total() }} results
+                    Mostrando {{ $products->firstItem() ?? 0 }} - {{ $products->lastItem() ?? 0 }} de {{ $products->total() }} resultados
                 </div>
-                <div class="d-flex align-items-center gap-2">
-                    <form action="{{ route('productos') }}" method="GET" class="d-flex align-items-center">
-                        <select name="sort" class="form-select form-select-sm me-2" onchange="this.form.submit()">
-                            <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Default sorting</option>
-                            <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Price: Low to High</option>
-                            <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Price: High to Low</option>
-                        </select>
-                        @if(request('category'))
-                            <input type="hidden" name="category" value="{{ request('category') }}">
-                        @endif
-                        @if(request('search'))
-                            <input type="hidden" name="search" value="{{ request('search') }}">
-                        @endif
-                    </form>
-                    <div class="btn-group ms-2" role="group">
-                        <button type="button" class="btn btn-outline-success btn-sm active"><i class="fas fa-th"></i></button>
-                        <button type="button" class="btn btn-outline-success btn-sm"><i class="fas fa-list"></i></button>
-                    </div>
-                </div>
+                <form action="{{ route('productos') }}" method="GET" class="d-flex align-items-center">
+                    <select name="sort" class="form-select form-select-sm me-2" onchange="this.form.submit()">
+                        <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Ordenar por defecto</option>
+                        <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Precio: menor a mayor</option>
+                        <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Precio: mayor a menor</option>
+                    </select>
+                    @if(request('category'))
+                        <input type="hidden" name="category" value="{{ request('category') }}">
+                    @endif
+                </form>
             </div>
 
+            <div id="products-list">
             @if($products->isEmpty())
                 <div class="text-center py-5">
                     <div class="mb-4">
@@ -99,13 +50,13 @@
             @else
                 <div class="row g-4">
                     @foreach($products as $product)
-                        <div class="col-12 col-md-6 col-lg-4">
+                        <div class="col-12 col-md-6 col-lg-3">
                             <div class="card product-card h-100 border-0 shadow-sm">
-                                <div class="position-relative bg-light" style="height: 220px; display: flex; align-items: center; justify-content: center;">
+                                <div class="position-relative" style="height: 260px; display: flex; align-items: center; justify-content: center; background: #fff; overflow: hidden;">
                                     @if(rand(0,4) == 0)
                                         <span class="badge bg-success position-absolute top-0 start-0 m-2">Sale!</span>
                                     @endif
-                                    <img src="{{ $product->image ? asset('images/products/' . basename($product->image)) : asset('images/no-image.png') }}" class="img-fluid" alt="{{ $product->name }}" style="max-height: 180px; object-fit: contain;">
+                                    <img src="{{ $product->image ? asset('images/products/' . basename($product->image)) : asset('images/no-image.png') }}" class="img-fluid product-zoom-img" alt="{{ $product->name }}" style="max-height: 240px; width: 100%; object-fit: cover;">
                                 </div>
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title fw-bold mb-1">{{ $product->name }}</h5>
@@ -119,18 +70,93 @@
                                             @endfor
                                         </span>
                                     </div>
-                                    <a href="{{ route('productos.show', $product->id) }}" class="btn btn-outline-success mt-auto">Ver Detalles</a>
+                                    <form action="{{ route('cart.add', $product->id) }}" method="POST" class="w-100 mt-auto add-to-cart-form">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        <input type="hidden" name="quantity" value="1">
+                                        <button type="submit" class="btn btn-success w-100 d-flex align-items-center justify-content-center" title="Agregar al carrito">
+                                            <i class="fas fa-shopping-cart me-2"></i>
+                                            Agregar al carrito
+                                            <span class="fw-bold text-white ms-2" style="font-size:1.2em;">+</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
-                <!-- Paginación -->
-                <div class="d-flex justify-content-center mt-4">
-                    {{ $products->appends(request()->query())->links() }}
-                </div>
+            @endif
+            </div>
+            {{-- Paginación moderna y funcional: mantiene filtros y categoría --}}
+            @if ($products->hasPages())
+            <div class="d-flex justify-content-center mt-4">
+                {!! $products->appends(request()->query())->links() !!}
+            </div>
             @endif
         </div>
     </div>
 </div>
+
+<style>
+.product-card img {
+  animation: zoomInOut 3s ease-in-out infinite;
+}
+
+@keyframes zoomInOut {
+  0%, 100% { transform: scale(1);}
+  50% { transform: scale(1.08);}
+}
+
+.product-zoom-img {
+  animation: zoomInOut 3s ease-in-out infinite;
+  transition: transform 0.3s;
+  will-change: transform;
+}
+
+@keyframes zoomInOut {
+  0%, 100% { transform: scale(1);}
+  50% { transform: scale(1.08);}
+}
+</style>
+
+{{-- Toast de éxito --}}
+<div id="cart-toast" style="display:none; position:fixed; bottom:32px; right:32px; z-index:9999; min-width:260px; background:#28a745; color:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.15); padding:18px 28px; font-size:1.1em; align-items:center; gap:10px;">
+    <i class="fas fa-check-circle me-2" style="font-size:1.4em;"></i>
+    <span id="cart-toast-msg">Producto agregado al carrito</span>
+</div>
+
+@push('scripts')
+<script>
+document.querySelectorAll('.add-to-cart-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        fetch(this.action, {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': formData.get('_token'),
+            },
+            body: formData
+        })
+        .then(res => res.ok ? res.json().catch(()=>({success:true})) : Promise.reject(res))
+        .then(data => {
+            showCartToast('Producto agregado al carrito');
+        })
+        .catch(() => {
+            showCartToast('No se pudo agregar el producto', true);
+        });
+    });
+});
+
+function showCartToast(msg, error = false) {
+    const toast = document.getElementById('cart-toast');
+    const msgSpan = document.getElementById('cart-toast-msg');
+    toast.style.background = error ? '#dc3545' : '#28a745';
+    msgSpan.textContent = msg;
+    toast.style.display = 'flex';
+    setTimeout(() => { toast.style.display = 'none'; }, 2200);
+}
+</script>
+@endpush
 @endsection 

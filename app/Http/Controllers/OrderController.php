@@ -54,7 +54,8 @@ class OrderController extends Controller
             'shipping_state' => 'required|string|max:255',
             'shipping_zipcode' => 'required|string|max:20',
             'shipping_country' => 'required|string|max:255',
-            'payment_method' => 'required|in:credit_card,paypal'
+            'payment_method' => 'required|in:credit_card,paypal',
+            'tipo_entrega' => 'required|in:delivery,recogo',
         ]);
 
         $cart = Cart::with('items.product')
@@ -80,7 +81,8 @@ class OrderController extends Controller
                 'shipping_zipcode' => $request->shipping_zipcode,
                 'shipping_country' => $request->shipping_country,
                 'payment_method' => $request->payment_method,
-                'payment_status' => 'pending'
+                'payment_status' => 'pending',
+                'tipo_entrega' => $request->tipo_entrega,
             ]);
 
             // Crear los items de la orden
@@ -111,7 +113,26 @@ class OrderController extends Controller
 
             DB::commit();
 
-            return redirect()->route('orders.show', $order)
+            // Generar PDF de la boleta
+            $user = Auth::user();
+            $pdf = \PDF::loadView('boleta', [
+                'user' => $user,
+                'order' => $order
+            ]);
+            $pdfPath = storage_path('app/public/boletas/boleta_' . $order->id . '.pdf');
+            if (!file_exists(storage_path('app/public/boletas'))) {
+                mkdir(storage_path('app/public/boletas'), 0777, true);
+            }
+            $pdf->save($pdfPath);
+
+            // Preparar mensaje de WhatsApp con enlace de descarga
+            $whatsappNumber = $user->celular;
+            $pdfUrl = asset('storage/boletas/boleta_' . $order->id . '.pdf');
+            $mensaje = urlencode('Este es su boleta de compra, gracias por su preferencia, pronto le llegará su pedido.\nDescargue su boleta aquí: ' . $pdfUrl);
+            $whatsappLink = "https://wa.me/{$whatsappNumber}?text={$mensaje}";
+
+            // Redirigir mostrando solo un mensaje simple de éxito
+            return redirect()->route('orders.index')
                 ->with('success', '¡Tu pedido ha sido procesado con éxito!');
 
         } catch (\Exception $e) {

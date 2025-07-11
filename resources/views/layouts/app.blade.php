@@ -30,6 +30,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     {{-- Asegúrate de que esta línea esté presente y apunte a tu custom.css --}}
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    @stack('styles')
 </head>
 
 <body>
@@ -147,7 +148,7 @@
                 {{-- Botón "Shop Categories" (visible solo en pantallas grandes) --}}
                 <div class="shop-categories-btn d-none d-lg-block me-4">
                     <a href="{{ route('home') }}"
-                        class="btn btn-primary text-white d-flex align-items-center px-4 py-2">
+                        class="btn btn-success text-white d-flex align-items-center px-4 py-2">
                         <i class="fas fa-home me-2"></i> HOME
                     </a>
                 </div>
@@ -169,14 +170,14 @@
 
         <main class="py-2">
             {{-- Mensajes de sesión (success/error) --}}
-            @if(session('success'))
+            {{-- @if(session('success'))
                 <div class="container">
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 </div>
-            @endif
+            @endif --}}
 
             @if(session('error'))
                 <div class="container">
@@ -200,8 +201,8 @@
                     <div class="mb-3">
                         <img src="{{ asset('images/logo/tottus_logo1.png') }}" alt="Tottus" style="height: 48px;">
                     </div>
-                    <div class="mb-2 text-muted small">Call us free 24/7</div>
-                    <div class="fw-bold text-success mb-3" style="font-size:1.2em;">84 (01) 595-0000</div>
+                    <div class="mb-2 text-muted small">Llámanos gratis 24/7</div>
+                    <div class="fw-bold text-success mb-3" style="font-size:1.2em;">(01) 595-0000</div>
                     <div class="d-flex gap-2">
                         <a href="https://facebook.com/TottusPeru" class="footer-social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://instagram.com/tottusperu" class="footer-social-link" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -211,11 +212,11 @@
                 </div>
                 <!-- Contacto -->
                 <div class="col-lg-3 col-md-6">
-                    <div class="footer-title">Contact</div>
+                    <div class="footer-title">Contacto</div>
                     <div class="footer-underline mb-3"></div>
-                    <div class="small text-muted mb-1">Address: Lima, Perú</div>
-                    <div class="small text-muted mb-1">Phone: (01) 595-0000</div>
-                    <div class="small text-muted mb-2">Mail: info@tottus.com.pe</div>
+                    <div class="small text-muted mb-1">Dirección: Lima, Perú</div>
+                    <div class="small text-muted mb-1">Teléfono: (01) 595-0000</div>
+                    <div class="small text-muted mb-2">Correo: info@tottus.com.pe</div>
                     <div class="d-flex gap-2 mt-2">
                         <a href="https://facebook.com/TottusPeru" class="footer-social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://instagram.com/tottusperu" class="footer-social-link" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -223,39 +224,39 @@
                 </div>
                 <!-- Quicklinks -->
                 <div class="col-lg-3 col-md-6">
-                    <div class="footer-title">Quicklink</div>
+                    <div class="footer-title">Enlaces rápidos</div>
                     <div class="footer-underline mb-3"></div>
                     <div class="row">
                         <div class="col-6">
                             <ul class="footer-list">
-                                <li><a href="#">Our Brand</a></li>
-                                <li><a href="#">Term of uses</a></li>
-                                <li><a href="#">Help & FAQ</a></li>
-                                <li><a href="#">Services</a></li>
+                                <li><a href="#">Nuestra Marca</a></li>
+                                <li><a href="#">Términos de uso</a></li>
+                                <li><a href="#">Ayuda & FAQ</a></li>
+                                <li><a href="#">Servicios</a></li>
                             </ul>
                         </div>
                         <div class="col-6">
                             <ul class="footer-list">
-                                <li><a href="{{ route('perfil') }}">My Account</a></li>
-                                <li><a href="{{ route('register') }}">Register</a></li>
-                                <li><a href="{{ route('login') }}">Login</a></li>
+                                <li><a href="{{ route('perfil') }}">Mi Cuenta</a></li>
+                                <li><a href="{{ route('register') }}">Registrarse</a></li>
+                                <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <!-- Newsletter -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-title">Newsletter</div>
-                    <div class="footer-underline mb-3"></div>
-                    <div class="small text-muted mb-2">Suscríbete para recibir ofertas y novedades especiales.</div>
-                    <form>
-                        <input type="email" class="footer-input mb-2" placeholder="Enter your email to get Special Offers">
-                    </form>
+                <!-- Redes Sociales -->
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-end justify-content-center">
+                    <div class="footer-title mb-3 text-end w-100">Síguenos en nuestras redes</div>
+                    <div class="footer-social-vertical d-flex flex-column align-items-end gap-4" style="min-height: 180px;">
+                        <a href="https://whatsapp.com/channel/0029VbAjhQ9GpLHImcDJy904" class="footer-social-name whatsapp-name" target="_blank">WhatsApp</a>
+                        <a href="https://facebook.com/TottusPeru" class="footer-social-name facebook-name" target="_blank">Facebook</a>
+                        <a href="https://instagram.com/tottusperu" class="footer-social-name instagram-name" target="_blank">Instagram</a>
+                    </div>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-12 text-center small text-muted">
-                    Copyright © {{ date('Y') }} Tottus. All rights reserved.
+                    Copyright © {{ date('Y') }} Tottus. Todos los derechos reservados.
                 </div>
             </div>
         </div>
@@ -274,10 +275,49 @@
         </a>
     </div>
 
+    {{-- Toast flotante para agregar al carrito -->
+    <div id="cart-toast" style="display:none; position:fixed; left:50%; transform:translateX(-50%); bottom:40px; z-index:9999; min-width:320px; background:#28a745; color:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.15); padding:18px 32px; font-size:1.25em; font-weight:bold; text-align:center;">
+        Se agregó al carrito.
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('form.add-to-cart-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                fetch(this.action, {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN': formData.get('_token'),
+                    },
+                    body: formData
+                })
+                .then(res => res.ok ? res.json().catch(()=>({success:true})) : Promise.reject(res))
+                .then(data => {
+                    showCartToast();
+                })
+                .catch(() => {
+                    showCartToast('No se pudo agregar el producto', true);
+                });
+            });
+        });
+    });
+    function showCartToast(msg = 'Se agregó al carrito.', error = false) {
+        const toast = document.getElementById('cart-toast');
+        toast.textContent = msg;
+        toast.style.background = error ? '#dc3545' : '#28a745';
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 3000);
+    }
+    </script>
+
     {{-- ACTUALIZADO: Bootstrap JS a la última versión estable --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
+    
+    
 </body>
 
 </html>

@@ -13,8 +13,16 @@ class ProductController extends Controller
         $query = Product::where('active', true);
         $selectedCategory = null;
 
-        // Filtrar por categoría
-        if ($request->has('category')) {
+        // Búsqueda por nombre, descripción, etc. (tiene prioridad)
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('name', 'like', "%$search%")
+                  ->orWhere('description', 'like', "%$search%")
+                  ;
+            });
+        } else if ($request->has('category')) {
+            // Solo filtrar por categoría si no hay búsqueda
             $query->where('category_id', $request->category);
             $selectedCategory = Category::find($request->category);
         }
@@ -36,10 +44,21 @@ class ProductController extends Controller
             $query->orderBy('created_at', 'desc');
         }
 
-        $products = $query->paginate(12);
+        $products = $query->paginate(20); // 4 columnas x 5 filas
         $categories = Category::where('active', true)->get();
 
-        return view('products.index', compact('products', 'categories', 'selectedCategory'));
+        // Obtener el carrito actual del usuario (si está autenticado)
+        $cart = null;
+        if (auth()->check()) {
+            $cart = auth()->user()->cart()->with('items')->first();
+        }
+
+        // Si es AJAX, retorna solo la grilla de productos
+        if ($request->ajax() || $request->ajax == 1) {
+            return view('products._list', compact('products', 'cart'))->render();
+        }
+
+        return view('products.index', compact('products', 'categories', 'selectedCategory', 'cart'));
     }
 
     public function show($id)

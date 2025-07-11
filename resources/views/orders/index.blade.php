@@ -52,9 +52,7 @@
                             </td>
                             <td>{{ ucfirst($order->payment_method) }}</td>
                             <td>
-                                <a href="{{ route('orders.show', $order) }}" class="btn btn-sm btn-primary">
-                                    <i class="fas fa-eye"></i> Ver Detalles
-                                </a>
+                                <a href="{{ route('orders.show', $order) }}" class="btn btn-sm btn-success">Ver</a>
                             </td>
                         </tr>
                     @endforeach

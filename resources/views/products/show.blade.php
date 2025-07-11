@@ -13,17 +13,30 @@
 
     <div class="row">
         <!-- Imagen del Producto -->
-        <div class="col-md-6 mb-4">
-            <img src="{{ $product->image ? asset('images/products/' . basename($product->image)) : asset('images/no-image.png') }}" alt="{{ $product->name }}" class="img-fluid rounded">
+        <div class="col-md-6 mb-4 d-flex align-items-center justify-content-center">
+            <div style="width:100%; max-width:420px; height:420px; background:#fff; display:flex; align-items:center; justify-content:center; border-radius:16px; box-shadow:0 2px 8px rgba(0,0,0,0.04); cursor:pointer; overflow:hidden;" data-bs-toggle="modal" data-bs-target="#productImageModal">
+                <img src="{{ $product->image ? asset('images/products/' . basename($product->image)) : asset('images/no-image.png') }}" alt="{{ $product->name }}" style="max-width:100%; max-height:100%; object-fit:cover;" class="product-detail-img-zoom">
+            </div>
+        </div>
+
+        <!-- Modal para ampliar imagen -->
+        <div class="modal fade" id="productImageModal" tabindex="-1" aria-labelledby="productImageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content bg-transparent border-0">
+                    <div class="modal-body d-flex justify-content-center align-items-center p-0">
+                        <img src="{{ $product->image ? asset('images/products/' . basename($product->image)) : asset('images/no-image.png') }}" alt="{{ $product->name }}" style="max-width:90vw; max-height:80vh; object-fit:cover; box-shadow:0 2px 16px rgba(0,0,0,0.2); background:#fff; border-radius:16px;">
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Detalles del Producto -->
         <div class="col-md-6">
             <h1 class="mb-3">{{ $product->name }}</h1>
-            <p class="text-muted mb-4">{{ $product->description }}</p>
+            <p class="product-desc-green text-muted mb-4">{{ $product->description }}</p>
             
             <div class="d-flex align-items-center mb-4">
-                <h2 class="text-primary mb-0">${{ number_format($product->price, 2) }}</h2>
+                <h2 class="product-price-green mb-0">S/ {{ number_format($product->price, 2) }}</h2>
                 @if($product->stock > 0)
                     <span class="badge bg-success ms-3">En Stock</span>
                 @else
@@ -31,15 +44,11 @@
                 @endif
             </div>
 
-            <form action="{{ route('cart.add', $product->id) }}" method="POST" class="mb-4">
+            <form action="{{ route('cart.add', $product->id) }}" method="POST" class="mb-4 add-to-cart-form">
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                <div class="input-group mb-3" style="max-width: 200px;">
-                    <button type="button" class="btn btn-outline-secondary" onclick="decrementQuantity()">-</button>
-                    <input type="number" name="quantity" id="quantity" class="form-control text-center" value="1" min="1" max="{{ $product->stock }}" readonly>
-                    <button type="button" class="btn btn-outline-secondary" onclick="incrementQuantity()">+</button>
-                </div>
-                <button type="submit" class="btn btn-primary" {{ $product->stock <= 0 ? 'disabled' : '' }}>
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="btn btn-green" {{ $product->stock <= 0 ? 'disabled' : '' }}>
                     <i class="fas fa-shopping-cart me-2"></i>Agregar al Carrito
                 </button>
             </form>
@@ -64,13 +73,13 @@
             <div class="row">
                 @foreach($relatedProducts as $relatedProduct)
                 <div class="col-md-3">
-                    <div class="card h-100">
-                        <img src="{{ $relatedProduct->image ? asset('images/products/' . basename($relatedProduct->image)) : asset('images/no-image.png') }}" class="card-img-top" alt="{{ $relatedProduct->name }}" style="height: 200px; object-fit: cover;">
+                    <div class="card h-100 related-product-card">
+                        <img src="{{ $relatedProduct->image ? asset('images/products/' . basename($relatedProduct->image)) : asset('images/no-image.png') }}" class="card-img-top related-img-zoom" alt="{{ $relatedProduct->name }}" style="height: 200px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">{{ $relatedProduct->name }}</h5>
-                            <p class="card-text text-muted">{{ Str::limit($relatedProduct->description, 100) }}</p>
-                            <p class="card-text text-primary fw-bold">${{ number_format($relatedProduct->price, 2) }}</p>
-                            <a href="{{ route('productos.show', $relatedProduct->id) }}" class="btn btn-outline-primary">Ver Detalles</a>
+                            <p class="card-text related-desc-green">{{ Str::limit($relatedProduct->description, 100) }}</p>
+                            <p class="card-text related-price-green">S/ {{ number_format($relatedProduct->price, 2) }}</p>
+                            <a href="{{ route('productos.show', $relatedProduct->id) }}" class="btn btn-green">Ver Detalles</a>
                         </div>
                     </div>
                 </div>

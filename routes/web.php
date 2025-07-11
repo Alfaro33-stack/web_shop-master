@@ -49,12 +49,12 @@ Auth::routes(); // Hay dos llamadas a Auth::routes(), solo necesitas una.
 // RUTAS DEL CARRITO
 // ===================================
 // Agrupa las rutas del carrito en un prefijo para organizarlas
-Route::prefix('carrito')->name('cart.')->middleware('auth')->group(function () {
-    Route::get('/', [CartController::class, 'index'])->name('index');
+Route::prefix('carrito')->name('cart.')->group(function () {
+    Route::get('/', [CartController::class, 'index'])->middleware('auth')->name('index');
     Route::post('/add/{product}', [CartController::class, 'add'])->name('add');
-    Route::delete('/remove/{product}', [CartController::class, 'remove'])->name('remove');
-    Route::patch('/update/{product}', [CartController::class, 'update'])->name('update');
-    Route::delete('/clear', [CartController::class, 'clear'])->name('clear');
+    Route::delete('/remove/{product}', [CartController::class, 'remove'])->middleware('auth')->name('remove');
+    Route::patch('/update/{product}', [CartController::class, 'update'])->middleware('auth')->name('update');
+    Route::delete('/clear', [CartController::class, 'clear'])->middleware('auth')->name('clear');
 });
 
 
@@ -64,6 +64,7 @@ Route::prefix('carrito')->name('cart.')->middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function () {
     // Perfil de usuario
     Route::get('/perfil', [HomeController::class, 'perfil'])->name('perfil');
+    Route::post('/perfil', [HomeController::class, 'updatePerfil'])->name('perfil.update');
 
     // Rutas de órdenes
     // Usa un prefijo y grupo para organizarlas

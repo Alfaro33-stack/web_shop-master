@@ -424,6 +424,12 @@ a:hover {
     height: 3px; /* Indicadores más delgados */
 }
 
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 1rem !important;
+    height: 1rem !important;
+    background-size: 1rem 1rem !important;
+}
 
 /* ===================================== */
 /* FIN SECCIÓN BANNERS PRINCIPALES */
@@ -510,6 +516,7 @@ a:hover {
 
 .product-card {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background: #fff;
 }
 
 .product-card:hover {
@@ -1097,5 +1104,258 @@ a:hover {
 
 .footer::-webkit-scrollbar-thumb:hover {
     background: #5a8a3e;
+}
+
+.pagination {
+    --bs-pagination-padding-x: 0.3rem !important;
+    --bs-pagination-padding-y: 0.15rem !important;
+    --bs-pagination-font-size: 0.85rem !important;
+}
+.pagination .page-link {
+    padding: 0.2rem 0.5rem !important;
+    font-size: 0.85rem !important;
+    line-height: 1.2 !important;
+}
+.pagination .page-link svg,
+.pagination .page-link i {
+    font-size: 1em !important;
+    width: 1em !important;
+    height: 1em !important;
+    max-width: 1.5em !important;
+    max-height: 1.5em !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+}
+
+/* FIX TEMPORAL: Ocultar flechas gigantes en la paginación */
+.pagination img,
+.pagination svg {
+    display: none !important;
+}
+
+/* FIX: Ocultar solo los SVG de flechas de la paginación Tailwind */
+.pagination svg {
+    display: none !important;
+}
+
+/* Paginación personalizada en verde */
+.pagination .page-item.active .page-link {
+    background-color: #28a745 !important; /* Verde Bootstrap */
+    border-color: #28a745 !important;
+    color: #fff !important;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(40,167,69,0.08);
+}
+.pagination .page-link {
+    color: #28a745 !important;
+    border-color: #28a74533;
+    transition: background 0.2s, color 0.2s;
+}
+.pagination .page-link:hover, .pagination .page-link:focus {
+    background-color: #eafaf1 !important;
+    color: #218838 !important;
+    border-color: #218838 !important;
+}
+.pagination .page-item.disabled .page-link {
+    color: #b1dfbb !important;
+    background-color: #f8f9fa !important;
+    border-color: #eafaf1 !important;
+}
+
+/* Forzar tamaño pequeño a flechas e iconos de paginación (super específico) */
+.pagination svg,
+.pagination .page-link svg,
+.pagination .page-link i,
+.pagination .page-link .fa,
+.pagination .page-link .fas,
+.pagination .page-link .fa-chevron-left,
+.pagination .page-link .fa-chevron-right {
+    width: 1em !important;
+    height: 1em !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 1.2em !important;
+    max-height: 1.2em !important;
+    font-size: 1em !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+}
+.pagination .page-link {
+    padding-top: 0.2rem !important;
+    padding-bottom: 0.2rem !important;
+}
+
+/* Ocultar flechas grandes extra fuera de la paginación estándar */
+.big-arrow, .custom-arrow, .arrow-large, .arrow, .chevron, .flecha, .icon-arrow, .icon-chevron, .icon-flecha {
+    display: none !important;
+}
+
+/* Ocultar SVGs grandes sueltos fuera de la paginación */
+svg[width="48"], svg[height="48"], svg[width="64"], svg[height="64"], svg[width="72"], svg[height="72"] {
+    display: none !important;
+}
+
+/* Si hay flechas en divs o spans sueltos, ocultarlas */
+div.arrow, span.arrow, div.chevron, span.chevron {
+    display: none !important;
+}
+
+/* Animación de zoom suave solo en imágenes de productos del grid de categorías */
+.product-card .position-relative {
+    overflow: hidden !important;
+    position: relative;
+}
+.product-card .position-relative img {
+    animation: zoomInOut 3s ease-in-out infinite;
+    transition: transform 0.3s;
+    will-change: transform;
+}
+@keyframes zoomInOut {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+/* Animación de zoom suave en la imagen principal del detalle de producto */
+.product-detail-img-zoom {
+    animation: zoomInOut 3s ease-in-out infinite;
+    transition: transform 0.3s;
+    will-change: transform;
+}
+
+/* Colores verdes para precio, botón y descripción en el detalle de producto */
+.product-price-green {
+    color: #28a745 !important;
+    font-weight: bold;
+}
+.product-desc-green {
+    color: #218838 !important;
+}
+.btn-green {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+    color: #fff !important;
+}
+.btn-green:hover, .btn-green:focus {
+    background-color: #218838 !important;
+    border-color: #218838 !important;
+    color: #fff !important;
+}
+
+/* Animación de zoom y colores verdes en productos relacionados */
+.related-product-card .related-img-zoom {
+    animation: zoomInOut 3s ease-in-out infinite;
+    transition: transform 0.3s;
+    will-change: transform;
+}
+.related-product-card .related-price-green {
+    color: #28a745 !important;
+    font-weight: bold;
+}
+.related-product-card .related-desc-green {
+    color: #218838 !important;
+}
+.related-product-card .btn-green {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+    color: #fff !important;
+}
+.related-product-card .btn-green:hover, .related-product-card .btn-green:focus {
+    background-color: #218838 !important;
+    border-color: #218838 !important;
+    color: #fff !important;
+}
+
+/* Animación sutil de zoom SOLO en banners estáticos de categorías */
+.shop-banner img,
+.banner-vertical img,
+.banner-horizontal img,
+.fruit-category-banner img {
+    animation: subtleZoom 6s ease-in-out infinite;
+    transition: transform 0.3s;
+    will-change: transform;
+}
+@keyframes subtleZoom {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+/* No aplicar animación a los banners de carrusel */
+.carousel-inner img,
+.carousel-item img {
+    animation: none !important;
+}
+
+/* Animación de zoom sutil para banners de categorías con background-image */
+.shop-banner {
+    animation: bgZoom 6s ease-in-out infinite;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+@keyframes bgZoom {
+    0%, 100% { background-size: 100% 100%; }
+    50% { background-size: 104% 104%; }
+}
+
+/* Productos destacados: animación de zoom rápida (3s) */
+.productos-destacados .product-card img,
+.productos-destacados .card-img-top {
+    animation-duration: 3s !important;
+}
+
+/* Productos por categoría: animación de zoom suave (6s) */
+.product-card .position-relative img {
+    animation-duration: 6s !important;
+}
+
+/* Animación de zoom sutil en imágenes de la sección Grandes Descuentos */
+.zona-descuentos .descuento-item img {
+    animation: subtleZoom 6s ease-in-out infinite;
+    transition: transform 0.3s;
+    will-change: transform;
+}
+
+/* Permitir zoom en productos destacados dentro del carrusel */
+.productos-destacados .product-card img,
+.productos-destacados .card-img-top {
+    animation: subtleZoom 6s ease-in-out infinite !important;
+    transition: transform 0.3s;
+    will-change: transform;
+}
+
+/* Bloquear animación solo en banners de carrusel principales */
+.carousel-inner > .carousel-item > img.banner-carrusel,
+.carousel-item > img.banner-carrusel {
+    animation: none !important;
+}
+
+/* Animación de zoom más rápida en productos destacados */
+.productos-destacados .product-card img,
+.productos-destacados .card-img-top {
+    animation-duration: 4s !important;
+}
+
+/* Footer: nombres de redes sociales alineados y modernos */
+.footer-social-vertical .footer-social-name {
+    font-size: 1.25em;
+    font-weight: bold;
+    color: #28a745;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+    padding-right: 8px;
+    display: block;
+}
+.footer-social-vertical .footer-social-name:hover {
+    color: #218838;
+    text-decoration: underline;
+}
+.footer-social-vertical .whatsapp-name { color: #25d366; }
+.footer-social-vertical .facebook-name { color: #1877f3; }
+.footer-social-vertical .instagram-name { color: #e1306c; }
+
+/* Footer fondo blanco */
+.footer-minimalist {
+    background: #fff !important;
 }
 

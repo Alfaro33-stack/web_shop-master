@@ -24,36 +24,62 @@ class CartController extends Controller
         ]);
 
         $product = Product::findOrFail($request->product_id);
-        
         if ($product->stock < $request->quantity) {
             return back()->with('error', 'No hay suficiente stock disponible.');
         }
 
-        $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
-        
-        $cartItem = $cart->items()->where('product_id', $product->id)->first();
-        
-        if ($cartItem) {
-            $newQuantity = $cartItem->quantity + $request->quantity;
-            if ($product->stock < $newQuantity) {
-                return back()->with('error', 'No hay suficiente stock disponible.');
+        if (Auth::check()) {
+            // Usuario logueado: carrito en base de datos
+            $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
+            $cartItem = $cart->items()->where('product_id', $product->id)->first();
+            if ($cartItem) {
+                $newQuantity = $cartItem->quantity + $request->quantity;
+                if ($product->stock < $newQuantity) {
+                    return back()->with('error', 'No hay suficiente stock disponible.');
+                }
+                $cartItem->quantity = $newQuantity;
+                $cartItem->price = $product->price;
+                $cartItem->subtotal = $product->price * $newQuantity;
+                $cartItem->save();
+            } else {
+                $cart->items()->create([
+                    'product_id' => $product->id,
+                    'quantity' => $request->quantity,
+                    'price' => $product->price,
+                    'subtotal' => $product->price * $request->quantity
+                ]);
             }
-            $cartItem->quantity = $newQuantity;
-            $cartItem->price = $product->price;
-            $cartItem->subtotal = $product->price * $newQuantity;
-            $cartItem->save();
+            $cart->updateTotal();
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json(['success' => true]);
+            }
+            return redirect()->route('cart.index')->with('success', 'Producto agregado al carrito.');
         } else {
-            $cart->items()->create([
-                'product_id' => $product->id,
-                'quantity' => $request->quantity,
-                'price' => $product->price,
-                'subtotal' => $product->price * $request->quantity
-            ]);
+            // Usuario no logueado: carrito en sesión
+            $cart = session()->get('cart', []);
+            if (isset($cart[$product->id])) {
+                $newQuantity = $cart[$product->id]['quantity'] + $request->quantity;
+                if ($product->stock < $newQuantity) {
+                    return back()->with('error', 'No hay suficiente stock disponible.');
+                }
+                $cart[$product->id]['quantity'] = $newQuantity;
+                $cart[$product->id]['subtotal'] = $product->price * $newQuantity;
+            } else {
+                $cart[$product->id] = [
+                    'product_id' => $product->id,
+                    'name' => $product->name,
+                    'price' => $product->price,
+                    'quantity' => $request->quantity,
+                    'subtotal' => $product->price * $request->quantity,
+                    'image' => $product->image ? asset('images/products/' . basename($product->image)) : asset('images/no-image.png'),
+                ];
+            }
+            session(['cart' => $cart]);
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json(['success' => true]);
+            }
+            return redirect()->route('cart.index')->with('success', 'Producto agregado al carrito.');
         }
-
-        $cart->updateTotal();
-        
-        return redirect()->route('cart.index')->with('success', 'Producto agregado al carrito.');
     }
 
     public function update(Request $request, $id)

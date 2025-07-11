@@ -89,6 +89,14 @@
                             @enderror
                         </div>
 
+                        <div class="mb-3">
+                            <label for="tipo_entrega" class="form-label">Tipo de entrega</label>
+                            <select class="form-select" id="tipo_entrega" name="tipo_entrega" required>
+                                <option value="delivery" selected>Delivery</option>
+                                <option value="recogo">Recogo en tienda</option>
+                            </select>
+                        </div>
+
                         <div class="mb-4">
                             <label class="form-label">Método de Pago</label>
                             <div class="form-check">
@@ -109,9 +117,7 @@
                         </div>
 
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg">
-                                Procesar Pedido
-                            </button>
+                            <button type="submit" class="btn btn-success btn-lg">Finalizar compra</button>
                         </div>
                     </form>
                 </div>

@@ -4,12 +4,6 @@
 <div class="container py-5">
     <h1 class="mb-4">Carrito de Compras</h1>
 
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
     @if(session('error'))
         <div class="alert alert-danger">
             {{ session('error') }}
@@ -31,7 +25,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <h5 class="mb-1">{{ $item->product->name }}</h5>
-                                    <p class="text-muted mb-0">Precio unitario: ${{ number_format($item->price, 2) }}</p>
+                                    <p class="text-muted mb-0">Precio unitario: S/ {{ number_format($item->price, 2) }}</p>
                                 </div>
                                 <div class="col-md-2">
                                     <form action="{{ route('cart.update', $item->id) }}" method="POST" class="d-flex align-items-center">
@@ -69,7 +63,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <a href="{{ route('productos') }}" class="btn btn-outline-primary">
+                    <a href="{{ route('productos') }}" class="btn btn-success">
                         <i class="fas fa-arrow-left"></i> Seguir Comprando
                     </a>
                     <form action="{{ route('cart.clear') }}" method="POST">
@@ -103,7 +97,7 @@
                             <strong>${{ number_format($cart->total, 2) }}</strong>
                         </div>
                         <div class="d-grid">
-                            <a href="{{ route('orders.checkout') }}" class="btn btn-primary">
+                            <a href="{{ route('orders.checkout') }}" class="btn btn-success">
                                 Proceder al Pago
                             </a>
                         </div>
@@ -118,7 +112,7 @@
             </div>
             <h3 class="mb-3">Tu carrito está vacío</h3>
             <p class="text-muted mb-4">Agrega algunos productos a tu carrito para comenzar a comprar.</p>
-            <a href="{{ route('productos') }}" class="btn btn-primary">
+            <a href="{{ route('productos') }}" class="btn btn-success">
                 Ver Productos
             </a>
         </div>
