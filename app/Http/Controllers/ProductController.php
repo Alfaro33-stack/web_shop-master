@@ -74,4 +74,46 @@ class ProductController extends Controller
 
         return view('products.show', compact('product', 'relatedProducts'));
     }
+
+    public function autocomplete(Request $request)
+    {
+        $term = $request->input('term');
+        if (!$term || strlen($term) < 2) {
+            return response()->json([]);
+        }
+
+        // Buscar coincidencias exactas o parciales
+        $products = Product::where('active', true)
+            ->where(function($q) use ($term) {
+                $q->where('name', 'like', "%$term%")
+                  ->orWhere('description', 'like', "%$term%")
+                  ;
+            })
+            ->limit(8)
+            ->get(['id', 'name']);
+
+        // Si hay resultados, devolverlos
+        if ($products->count() > 0) {
+            return response()->json($products);
+        }
+
+        // Si no hay resultados, buscar sugerencias por similitud (tolerancia a errores)
+        $allProducts = Product::where('active', true)->get(['id', 'name']);
+        $suggestions = [];
+        foreach ($allProducts as $product) {
+            $lev = levenshtein(mb_strtolower($term), mb_strtolower($product->name));
+            $sim = similar_text(mb_strtolower($term), mb_strtolower($product->name), $percent);
+            // Si la distancia es pequeña o la similitud es alta, sugerir
+            if ($lev <= 2 || $percent > 70) {
+                $suggestions[] = [
+                    'id' => $product->id,
+                    'name' => $product->name,
+                    'suggestion' => true
+                ];
+            }
+        }
+        // Limitar sugerencias
+        $suggestions = array_slice($suggestions, 0, 5);
+        return response()->json($suggestions);
+    }
 } 

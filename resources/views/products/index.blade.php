@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+@if(empty(request('search')) && count(request()->except(['page','sort','category'])) == 0)
 <!-- Banner superior -->
-<div class="shop-banner position-relative mb-4" style="background: url('{{ isset($selectedCategory) && $selectedCategory && $selectedCategory->image ? asset('images/' . $selectedCategory->image) : asset('images/banners/banner_carrusell-pica.png') }}') center/cover no-repeat; min-height: 450px;">
+<div class="shop-banner position-relative mb-4" style="background: url('{{ isset(
+    $selectedCategory) && $selectedCategory && $selectedCategory->image ? asset('images/' . $selectedCategory->image) : asset('images/banners/banner_carrusell-pica.png') }}') center/cover no-repeat; min-height: 450px;">
     <div class="container h-100 d-flex flex-column justify-content-center">
         <h1 class="text-white fw-bold display-5 mb-2" style="text-shadow: 0 2px 8px rgba(0,0,0,0.3);">
             {{ isset($selectedCategory) && $selectedCategory ? $selectedCategory->name : '' }}
@@ -17,6 +19,7 @@
         </nav>
     </div>
 </div>
+@endif
 
 <div class="container">
     <div class="row justify-content-center">

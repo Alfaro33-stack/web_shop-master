@@ -110,8 +110,8 @@
                                 </option>
                             @endforeach
                         </select>
-                        <input type="text" class="form-control" name="search" placeholder="Buscar productos..."
-                            aria-label="Buscar productos">
+                        <input type="text" class="form-control" name="search" id="search-autocomplete" placeholder="Buscar productos..."
+                            aria-label="Buscar productos" autocomplete="off">
                         <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
@@ -279,6 +279,7 @@
     <div id="cart-toast" style="display:none; position:fixed; left:50%; transform:translateX(-50%); bottom:40px; z-index:9999; min-width:320px; background:#28a745; color:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.15); padding:18px 32px; font-size:1.25em; font-weight:bold; text-align:center;">
         Se agregó al carrito.
     </div>
+    @push('scripts')
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('form.add-to-cart-form').forEach(form => {
@@ -311,6 +312,110 @@
         setTimeout(() => { toast.style.display = 'none'; }, 3000);
     }
     </script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-autocomplete');
+    if (!searchInput) return;
+    let dropdown;
+    let selectedIndex = -1;
+    let suggestions = [];
+
+    function closeDropdown() {
+        if (dropdown) {
+            dropdown.remove();
+            dropdown = null;
+            selectedIndex = -1;
+        }
+    }
+
+    function renderDropdown(items) {
+        closeDropdown();
+        if (!items.length) return;
+        dropdown = document.createElement('div');
+        dropdown.className = 'autocomplete-dropdown shadow-sm';
+        dropdown.style.position = 'absolute';
+        dropdown.style.background = '#fff';
+        dropdown.style.zIndex = 9999;
+        dropdown.style.width = searchInput.offsetWidth + 'px';
+        dropdown.style.top = (searchInput.offsetTop + searchInput.offsetHeight) + 'px';
+        dropdown.style.left = searchInput.offsetLeft + 'px';
+        dropdown.style.borderRadius = '0 0 8px 8px';
+        dropdown.style.border = '1px solid #c8e6c9';
+        dropdown.style.maxHeight = '260px';
+        dropdown.style.overflowY = 'auto';
+        items.forEach((item, idx) => {
+            const option = document.createElement('div');
+            option.className = 'autocomplete-option px-3 py-2';
+            option.style.cursor = 'pointer';
+            option.style.background = idx === selectedIndex ? '#e8f5e9' : '#fff';
+            option.innerHTML = item.suggestion ? `<span class='text-muted'>Quizás quiso decir:</span> <b>${item.name}</b>` : item.name;
+            option.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+                searchInput.value = item.name;
+                closeDropdown();
+                searchInput.form && searchInput.form.submit();
+            });
+            dropdown.appendChild(option);
+        });
+        searchInput.parentNode.appendChild(dropdown);
+    }
+
+    searchInput.addEventListener('input', function() {
+        const term = this.value.trim();
+        if (term.length < 2) {
+            closeDropdown();
+            return;
+        }
+        fetch(`/productos-autocomplete?term=${encodeURIComponent(term)}`)
+            .then(res => res.json())
+            .then(data => {
+                suggestions = data;
+                renderDropdown(suggestions);
+            });
+    });
+
+    searchInput.addEventListener('keydown', function(e) {
+        if (!dropdown || !suggestions.length) return;
+        if (e.key === 'ArrowDown') {
+            selectedIndex = (selectedIndex + 1) % suggestions.length;
+            renderDropdown(suggestions);
+            e.preventDefault();
+        } else if (e.key === 'ArrowUp') {
+            selectedIndex = (selectedIndex - 1 + suggestions.length) % suggestions.length;
+            renderDropdown(suggestions);
+            e.preventDefault();
+        } else if (e.key === 'Enter') {
+            if (selectedIndex >= 0 && suggestions[selectedIndex]) {
+                searchInput.value = suggestions[selectedIndex].name;
+                closeDropdown();
+                searchInput.form && searchInput.form.submit();
+                e.preventDefault();
+            }
+        } else if (e.key === 'Escape') {
+            closeDropdown();
+        }
+    });
+
+    document.addEventListener('click', function(e) {
+        if (e.target !== searchInput && (!dropdown || !dropdown.contains(e.target))) {
+            closeDropdown();
+        }
+    });
+});
+</script>
+<style>
+.autocomplete-dropdown {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    font-size: 1em;
+}
+.autocomplete-option {
+    transition: background 0.15s;
+}
+.autocomplete-option:hover, .autocomplete-option:active {
+    background: #e8f5e9 !important;
+}
+</style>
+@endpush
 
     {{-- ACTUALIZADO: Bootstrap JS a la última versión estable --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

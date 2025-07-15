@@ -33,6 +33,9 @@ Route::get('/contacto', [ContactController::class, 'index'])->name('contact');
 Route::get('/productos', [ProductController::class, 'index'])->name('productos');
 Route::get('/productos/{product}', [ProductController::class, 'show'])->name('productos.show');
 
+// Endpoint para autocompletado y sugerencias inteligentes de productos
+Route::get('/productos-autocomplete', [ProductController::class, 'autocomplete'])->name('productos.autocomplete');
+
 // Rutas de categorías
 Route::get('/categorias', [CategoryController::class, 'index'])->name('categorias');
 Route::get('/categorias/{category}', [CategoryController::class, 'show'])->name('categorias.show');
