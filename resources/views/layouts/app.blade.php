@@ -128,7 +128,7 @@
                                 style="font-size: 0.6em;">0</span>
                         </a>
                         {{-- Asume que tienes una forma de obtener el total del carrito --}}
-                        <span class="ms-2 fw-bold">$0.00</span>
+                        <span class="ms-2 fw-bold">S/{{ isset($cart) && $cart->items->count() ? number_format($cart->items->sum(function($item){ return $item->price * $item->quantity; }), 2) : '0.00' }}</span>
                     </div>
                 </div>
             </div>

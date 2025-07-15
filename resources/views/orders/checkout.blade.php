@@ -18,13 +18,13 @@
                                 <h6 class="mb-0">{{ $item->product->name }}</h6>
                                 <small class="text-muted">Cantidad: {{ $item->quantity }}</small>
                             </div>
-                            <span>${{ number_format($item->subtotal, 2) }}</span>
+                            <span>S/ {{ number_format($item->subtotal, 2) }}</span>
                         </div>
                     @endforeach
                     <hr>
                     <div class="d-flex justify-content-between">
                         <h5>Total</h5>
-                        <h5>${{ number_format($cart->total, 2) }}</h5>
+                        <h5>S/ {{ number_format($cart->total, 2) }}</h5>
                     </div>
                 </div>
             </div>
